@@ -16,10 +16,10 @@ import javax.swing.JComboBox;
 public class PanelCadastroPaciente extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField textFieldNome;
+	private JTextField textFieldEmail;
+	private JTextField textFieldCidade;
+	private JTextField textFieldEndereco;
 
 	/**
 	 * Create the panel.
@@ -34,126 +34,127 @@ public class PanelCadastroPaciente extends JPanel {
 		add(panelInternoCadastroP);
 		panelInternoCadastroP.setLayout(null);
 		
-		JLabel LabelTituloCadastroP = new JLabel("Cadastrar Paciente");
-		LabelTituloCadastroP.setHorizontalAlignment(SwingConstants.CENTER);
-		LabelTituloCadastroP.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		LabelTituloCadastroP.setBounds(275, 11, 200, 18);
-		panelInternoCadastroP.add(LabelTituloCadastroP);
+		JLabel labelTituloCadastro = new JLabel("Cadastrar Paciente");
+		labelTituloCadastro.setHorizontalAlignment(SwingConstants.CENTER);
+		labelTituloCadastro.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		labelTituloCadastro.setBounds(275, 11, 200, 18);
+		panelInternoCadastroP.add(labelTituloCadastro);
 		
-		JLabel lblNewLabel = new JLabel("Nome Completo");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(40, 40, 100, 14);
-		panelInternoCadastroP.add(lblNewLabel);
+		JLabel labelNome = new JLabel("Nome Completo");
+		labelNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelNome.setBounds(40, 40, 100, 14);
+		panelInternoCadastroP.add(labelNome);
 		
-		JLabel lblNewLabel_1 = new JLabel("Data de nascimento");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(40, 70, 122, 14);
-		panelInternoCadastroP.add(lblNewLabel_1);
+		JLabel labelDataNasc = new JLabel("Data de nascimento");
+		labelDataNasc.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelDataNasc.setBounds(40, 70, 122, 14);
+		panelInternoCadastroP.add(labelDataNasc);
 		
-		JLabel lblNewLabel_2 = new JLabel("CPF");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(275, 70, 29, 14);
-		panelInternoCadastroP.add(lblNewLabel_2);
+		JLabel labelCpf = new JLabel("CPF");
+		labelCpf.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelCpf.setBounds(275, 70, 29, 14);
+		panelInternoCadastroP.add(labelCpf);
 		
-		JLabel lblNewLabel_3 = new JLabel("Gênero");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3.setBounds(445, 70, 51, 14);
-		panelInternoCadastroP.add(lblNewLabel_3);
+		JLabel labelGenero = new JLabel("Gênero");
+		labelGenero.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelGenero.setBounds(445, 70, 51, 14);
+		panelInternoCadastroP.add(labelGenero);
 		
-		JLabel lblNewLabel_4 = new JLabel("E-mail");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_4.setBounds(40, 100, 36, 14);
-		panelInternoCadastroP.add(lblNewLabel_4);
+		JLabel labelEmail = new JLabel("E-mail");
+		labelEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelEmail.setBounds(40, 100, 36, 14);
+		panelInternoCadastroP.add(labelEmail);
 		
-		JLabel lblNewLabel_5 = new JLabel("Telefone");
-		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_5.setBounds(40, 130, 51, 14);
-		panelInternoCadastroP.add(lblNewLabel_5);
+		JLabel labelTelefone = new JLabel("Telefone");
+		labelTelefone.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelTelefone.setBounds(40, 130, 51, 14);
+		panelInternoCadastroP.add(labelTelefone);
 		
-		JLabel lblNewLabel_6 = new JLabel("Endereço");
-		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_6.setBounds(40, 190, 58, 14);
-		panelInternoCadastroP.add(lblNewLabel_6);
+		JLabel labelEndereco = new JLabel("Endereço");
+		labelEndereco.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelEndereco.setBounds(40, 190, 58, 14);
+		panelInternoCadastroP.add(labelEndereco);
 		
-		JLabel lblNewLabel_7 = new JLabel("Cidade");
-		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_7.setBounds(40, 160, 41, 14);
-		panelInternoCadastroP.add(lblNewLabel_7);
+		JLabel labelCidade = new JLabel("Cidade");
+		labelCidade.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelCidade.setBounds(40, 160, 41, 14);
+		panelInternoCadastroP.add(labelCidade);
 		
-		JLabel lblNewLabel_8 = new JLabel("Estado");
-		lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_8.setBounds(375, 160, 47, 14);
-		panelInternoCadastroP.add(lblNewLabel_8);
+		JLabel labelEstado = new JLabel("Estado");
+		labelEstado.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelEstado.setBounds(375, 160, 47, 14);
+		panelInternoCadastroP.add(labelEstado);
 		
-		JLabel lblNewLabel_9 = new JLabel("CEP");
-		lblNewLabel_9.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_9.setBounds(375, 190, 29, 14);
-		panelInternoCadastroP.add(lblNewLabel_9);
+		JLabel labelCep = new JLabel("CEP");
+		labelCep.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelCep.setBounds(375, 190, 29, 14);
+		panelInternoCadastroP.add(labelCep);
 		
-		JLabel lblNewLabel_10 = new JLabel("Prontuário");
-		lblNewLabel_10.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_10.setBounds(40, 240, 100, 14);
-		panelInternoCadastroP.add(lblNewLabel_10);
+		JLabel labelProntuario = new JLabel("Prontuário");
+		labelProntuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelProntuario.setBounds(40, 240, 100, 14);
+		panelInternoCadastroP.add(labelProntuario);
 		
-		JButton btnNewButton = new JButton("Cadastrar");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton.setBounds(300, 450, 150, 25);
-		panelInternoCadastroP.add(btnNewButton);
+		JButton botaoCadastrar = new JButton("Cadastrar");
+		botaoCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		botaoCadastrar.setBounds(300, 450, 150, 25);
+		panelInternoCadastroP.add(botaoCadastrar);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textField.setBounds(172, 39, 303, 20);
-		panelInternoCadastroP.add(textField);
-		textField.setColumns(10);
+		textFieldNome = new JTextField();
+		textFieldNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldNome.setBounds(172, 39, 303, 20);
+		panelInternoCadastroP.add(textFieldNome);
+		textFieldNome.setColumns(10);
 		
-		JFormattedTextField formattedTextField = new JFormattedTextField(new SimpleDateFormat("dd/MM/yyyy"));
-		formattedTextField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		formattedTextField.setText("00/00/0000");
-		formattedTextField.setBounds(172, 67, 85, 20);
-		panelInternoCadastroP.add(formattedTextField);
+		JFormattedTextField formattedTextFieldDataNasc = new JFormattedTextField(new SimpleDateFormat("dd/MM/yyyy"));
+		formattedTextFieldDataNasc.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		formattedTextFieldDataNasc.setBounds(172, 67, 85, 20);
+		panelInternoCadastroP.add(formattedTextFieldDataNasc);
 		
-		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
-		formattedTextField_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		formattedTextField_1.setText("888.888.888-88");
-		formattedTextField_1.setBounds(314, 67, 108, 20);
-		panelInternoCadastroP.add(formattedTextField_1);
+		JFormattedTextField formattedTextFieldCpf = new JFormattedTextField();
+		formattedTextFieldCpf.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		formattedTextFieldCpf.setBounds(314, 67, 108, 20);
+		panelInternoCadastroP.add(formattedTextFieldCpf);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(506, 68, 30, 22);
-		panelInternoCadastroP.add(comboBox);
+		JComboBox comboBoxGenero = new JComboBox();
+		comboBoxGenero.setBounds(506, 68, 30, 22);
+		panelInternoCadastroP.add(comboBoxGenero);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textField_1.setColumns(10);
-		textField_1.setBounds(172, 95, 303, 20);
-		panelInternoCadastroP.add(textField_1);
+		textFieldEmail = new JTextField();
+		textFieldEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldEmail.setColumns(10);
+		textFieldEmail.setBounds(172, 95, 303, 20);
+		panelInternoCadastroP.add(textFieldEmail);
 		
-		JFormattedTextField formattedTextField_2 = new JFormattedTextField();
-		formattedTextField_2.setText("(88) 88888-8888");
-		formattedTextField_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		formattedTextField_2.setBounds(172, 129, 114, 20);
-		panelInternoCadastroP.add(formattedTextField_2);
+		JFormattedTextField formattedTextFieldTelefone = new JFormattedTextField();
+		formattedTextFieldTelefone.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		formattedTextFieldTelefone.setBounds(172, 129, 114, 20);
+		panelInternoCadastroP.add(formattedTextFieldTelefone);
 		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textField_2.setBounds(171, 159, 194, 20);
-		panelInternoCadastroP.add(textField_2);
-		textField_2.setColumns(10);
+		textFieldCidade = new JTextField();
+		textFieldCidade.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldCidade.setBounds(171, 159, 194, 20);
+		panelInternoCadastroP.add(textFieldCidade);
+		textFieldCidade.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textField_3.setColumns(10);
-		textField_3.setBounds(172, 189, 194, 20);
-		panelInternoCadastroP.add(textField_3);
+		textFieldEndereco = new JTextField();
+		textFieldEndereco.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldEndereco.setColumns(10);
+		textFieldEndereco.setBounds(172, 189, 194, 20);
+		panelInternoCadastroP.add(textFieldEndereco);
 		
-		JFormattedTextField formattedTextField_3 = new JFormattedTextField();
-		formattedTextField_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		formattedTextField_3.setText("88888-888");
-		formattedTextField_3.setBounds(445, 189, 76, 20);
-		panelInternoCadastroP.add(formattedTextField_3);
+		JFormattedTextField formattedTextFieldCep = new JFormattedTextField();
+		formattedTextFieldCep.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		formattedTextFieldCep.setBounds(445, 189, 76, 20);
+		panelInternoCadastroP.add(formattedTextFieldCep);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(445, 158, 30, 22);
-		panelInternoCadastroP.add(comboBox_1);
+		JComboBox comboBoxEstado = new JComboBox();
+		comboBoxEstado.setBounds(445, 158, 30, 22);
+		panelInternoCadastroP.add(comboBoxEstado);
+		
+		JButton botaoAddProtuario = new JButton("Adicionar Prontuário");
+		botaoAddProtuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		botaoAddProtuario.setBounds(172, 238, 193, 23);
+		panelInternoCadastroP.add(botaoAddProtuario);
 	}
 }
