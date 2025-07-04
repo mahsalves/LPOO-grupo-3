@@ -133,7 +133,7 @@ public class PanelPaginaPaciente extends JPanel {
 		
 		JButton btnEditarCadastro = new JButton("Editar Cadastro");
 		btnEditarCadastro.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnEditarCadastro.setBounds(55, 376, 200, 25);
+		btnEditarCadastro.setBounds(55, 375, 200, 25);
 		panelInternoPagPaciente.add(btnEditarCadastro);
 		
 		JButton btnAdcionarConsultas = new JButton("Adcionar Consultas");

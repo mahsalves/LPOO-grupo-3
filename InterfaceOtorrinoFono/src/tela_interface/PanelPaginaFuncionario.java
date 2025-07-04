@@ -25,7 +25,7 @@ public class PanelPaginaFuncionario extends JPanel {
 		add(panelInternoPagPaciente);
 		panelInternoPagPaciente.setLayout(null);
 		
-		JLabel labelTituloPagPaciente = new JLabel("Página do Paciente");
+		JLabel labelTituloPagPaciente = new JLabel("Página do Funcionario");
 		labelTituloPagPaciente.setHorizontalAlignment(SwingConstants.CENTER);
 		labelTituloPagPaciente.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		labelTituloPagPaciente.setBounds(250, 11, 200, 19);
@@ -61,90 +61,71 @@ public class PanelPaginaFuncionario extends JPanel {
 		labelTelefone.setBounds(10, 190, 127, 15);
 		panelInternoPagPaciente.add(labelTelefone);
 		
-		JLabel labelEndereco = new JLabel("Endereço:");
-		labelEndereco.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelEndereco.setBounds(10, 220, 127, 15);
-		panelInternoPagPaciente.add(labelEndereco);
+		JLabel labelFuncao = new JLabel("Função:");
+		labelFuncao.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelFuncao.setBounds(10, 220, 127, 15);
+		panelInternoPagPaciente.add(labelFuncao);
 		
-		JLabel labelEstado = new JLabel("Estado:");
-		labelEstado.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelEstado.setBounds(10, 250, 127, 15);
-		panelInternoPagPaciente.add(labelEstado);
+		JLabel labelLicensa = new JLabel("CMR/CRF");
+		labelLicensa.setHorizontalAlignment(SwingConstants.LEFT);
+		labelLicensa.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelLicensa.setBounds(10, 250, 127, 15);
+		panelInternoPagPaciente.add(labelLicensa);
 		
-		JLabel labelCep = new JLabel("CEP:");
-		labelCep.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelCep.setBounds(10, 280, 127, 15);
-		panelInternoPagPaciente.add(labelCep);
+		JLabel labelNomeFuncionario = new JLabel("Nome do funcionario");
+		labelNomeFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelNomeFuncionario.setBounds(147, 40, 200, 15);
+		panelInternoPagPaciente.add(labelNomeFuncionario);
 		
-		JLabel labelProntuario = new JLabel("Prontuário:");
-		labelProntuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelProntuario.setBounds(10, 310, 127, 15);
-		panelInternoPagPaciente.add(labelProntuario);
+		JLabel labelDataNascFuncionario = new JLabel("00/00/0000");
+		labelDataNascFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelDataNascFuncionario.setBounds(147, 70, 200, 15);
+		panelInternoPagPaciente.add(labelDataNascFuncionario);
 		
-		JLabel labelNomePaciente = new JLabel("Nome do paciente");
-		labelNomePaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelNomePaciente.setBounds(147, 40, 200, 15);
-		panelInternoPagPaciente.add(labelNomePaciente);
+		JLabel labelCpfFuncionario = new JLabel("000.000.000-00");
+		labelCpfFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelCpfFuncionario.setBounds(147, 100, 200, 15);
+		panelInternoPagPaciente.add(labelCpfFuncionario);
 		
-		JLabel labelDataNascPaciente = new JLabel("00/00/0000");
-		labelDataNascPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelDataNascPaciente.setBounds(147, 70, 200, 15);
-		panelInternoPagPaciente.add(labelDataNascPaciente);
+		JLabel labelGeneroFuncionario = new JLabel("Gênero do funcionario");
+		labelGeneroFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelGeneroFuncionario.setBounds(147, 130, 200, 15);
+		panelInternoPagPaciente.add(labelGeneroFuncionario);
 		
-		JLabel labelCpfPaciente = new JLabel("000.000.000-00");
-		labelCpfPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelCpfPaciente.setBounds(147, 100, 200, 15);
-		panelInternoPagPaciente.add(labelCpfPaciente);
+		JLabel labelEmailFuncionario = new JLabel("E-mail do funcionario");
+		labelEmailFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelEmailFuncionario.setBounds(147, 160, 200, 15);
+		panelInternoPagPaciente.add(labelEmailFuncionario);
 		
-		JLabel labelGeneroPaciente = new JLabel("Gênero do paciente");
-		labelGeneroPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelGeneroPaciente.setBounds(147, 130, 200, 15);
-		panelInternoPagPaciente.add(labelGeneroPaciente);
+		JLabel labelTelefoneFuncionario = new JLabel("(00) 00000-0000");
+		labelTelefoneFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelTelefoneFuncionario.setBounds(147, 190, 200, 15);
+		panelInternoPagPaciente.add(labelTelefoneFuncionario);
 		
-		JLabel labelEmailPaciente = new JLabel("E-mail do paciente");
-		labelEmailPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelEmailPaciente.setBounds(147, 160, 200, 15);
-		panelInternoPagPaciente.add(labelEmailPaciente);
+		JLabel labelFuncaoFuncionario = new JLabel("Função do funcionario");
+		labelFuncaoFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelFuncaoFuncionario.setBounds(147, 220, 200, 15);
+		panelInternoPagPaciente.add(labelFuncaoFuncionario);
 		
-		JLabel labelTelefonePaciente = new JLabel("(00) 00000-0000");
-		labelTelefonePaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelTelefonePaciente.setBounds(147, 190, 200, 15);
-		panelInternoPagPaciente.add(labelTelefonePaciente);
-		
-		JLabel labelEnderecoPaciente = new JLabel("Endereço do paciente");
-		labelEnderecoPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelEnderecoPaciente.setBounds(147, 220, 200, 15);
-		panelInternoPagPaciente.add(labelEnderecoPaciente);
-		
-		JLabel labelEstadoPaciente = new JLabel("Estado do paciente");
-		labelEstadoPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelEstadoPaciente.setBounds(147, 250, 200, 15);
-		panelInternoPagPaciente.add(labelEstadoPaciente);
-		
-		JLabel labelCepPaciente = new JLabel("00000-000");
-		labelCepPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelCepPaciente.setBounds(147, 280, 200, 15);
-		panelInternoPagPaciente.add(labelCepPaciente);
-		
-		JButton btnBaixarProntuario = new JButton("Baixar Prontuário");
-		btnBaixarProntuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnBaixarProntuario.setBounds(147, 304, 150, 25);
-		panelInternoPagPaciente.add(btnBaixarProntuario);
+		JLabel labelLicensaFuncionario = new JLabel("???");
+		labelLicensaFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelLicensaFuncionario.setBounds(147, 250, 200, 15);
+		panelInternoPagPaciente.add(labelLicensaFuncionario);
 		
 		JButton btnEditarCadastro = new JButton("Editar Cadastro");
 		btnEditarCadastro.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnEditarCadastro.setBounds(55, 376, 200, 25);
+		btnEditarCadastro.setBounds(55, 315, 200, 25);
 		panelInternoPagPaciente.add(btnEditarCadastro);
-		
-		JButton btnAdcionarConsultas = new JButton("Adcionar Consultas");
-		btnAdcionarConsultas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnAdcionarConsultas.setBounds(470, 122, 200, 30);
-		panelInternoPagPaciente.add(btnAdcionarConsultas);
 		
 		JButton btnHistoricoDeConsultas = new JButton("Histórico de Consultas");
 		btnHistoricoDeConsultas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnHistoricoDeConsultas.setBounds(470, 175, 200, 30);
+		btnHistoricoDeConsultas.setBounds(470, 122, 200, 30);
 		panelInternoPagPaciente.add(btnHistoricoDeConsultas);
+		
+		JButton btnRemoverFuncionario = new JButton("Remover Funcionario");
+		btnRemoverFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnRemoverFuncionario.setBounds(470, 175, 200, 30);
+		panelInternoPagPaciente.add(btnRemoverFuncionario);
 	}
 
 }
