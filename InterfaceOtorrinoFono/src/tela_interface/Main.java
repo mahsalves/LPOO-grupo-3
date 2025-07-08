@@ -11,6 +11,8 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Main extends JFrame {
 
@@ -77,7 +79,20 @@ public class Main extends JFrame {
 		panelInternoLogin.add(textField);
 		textField.setColumns(10);
 		
+		PanelMenu painelMenu = new PanelMenu();
+		
 		JButton btnNewButton = new JButton("Entrar");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				getContentPane().remove(panelLogin);
+
+		        getContentPane().add(painelMenu);
+
+		        revalidate();
+		        repaint();
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.setBounds(150, 214, 100, 25);
 		panelInternoLogin.add(btnNewButton);
@@ -87,5 +102,4 @@ public class Main extends JFrame {
 		panelInternoLogin.add(passwordField);
 
 	}
-
 }

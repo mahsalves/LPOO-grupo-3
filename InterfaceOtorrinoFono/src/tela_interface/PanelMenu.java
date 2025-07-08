@@ -1,14 +1,18 @@
 package tela_interface;
 
 import java.awt.Color;
-
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 public class PanelMenu extends JPanel {
 
@@ -27,6 +31,20 @@ public class PanelMenu extends JPanel {
 		add(panelInternoMenu);
 		
 		JButton BotaoCadastrarPaciente = new JButton("Cadastrar paciente");
+		BotaoCadastrarPaciente.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+                PanelCadastroPaciente painelCadastroPaciente = new PanelCadastroPaciente();
+
+			    
+			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(BotaoCadastrarPaciente);
+
+			    frame.getContentPane().removeAll();
+			    frame.getContentPane().add(painelCadastroPaciente);
+			    frame.revalidate();
+			    frame.repaint();
+			}
+		});
 		BotaoCadastrarPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		BotaoCadastrarPaciente.setBounds(125, 80, 150, 25);
 		BotaoCadastrarPaciente.addActionListener(new ActionListener() {
@@ -47,6 +65,20 @@ public class PanelMenu extends JPanel {
 		panelInternoMenu.add(BotaoPerfilUsuario);
 		
 		JButton BotaoFuncoesAdmin = new JButton("Funções do admin.");
+		BotaoFuncoesAdmin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			    PanelAdmin painelAdmin = new PanelAdmin();
+
+			    
+			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(BotaoFuncoesAdmin);
+
+			    frame.getContentPane().removeAll();
+			    frame.getContentPane().add(painelAdmin);
+			    frame.revalidate();
+			    frame.repaint();
+			}
+		});
 		BotaoFuncoesAdmin.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		BotaoFuncoesAdmin.setBounds(125, 200, 150, 25);
 		panelInternoMenu.add(BotaoFuncoesAdmin);

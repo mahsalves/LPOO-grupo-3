@@ -20,6 +20,7 @@ public class PanelCadastroPaciente extends JPanel {
 	private JTextField textFieldEmail;
 	private JTextField textFieldCidade;
 	private JTextField textFieldEndereco;
+	private JTextField textField;
 
 	/**
 	 * Create the panel.
@@ -42,12 +43,12 @@ public class PanelCadastroPaciente extends JPanel {
 		
 		JLabel labelNome = new JLabel("Nome Completo");
 		labelNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelNome.setBounds(40, 40, 100, 14);
+		labelNome.setBounds(40, 40, 114, 14);
 		panelInternoCadastroP.add(labelNome);
 		
 		JLabel labelDataNasc = new JLabel("Data de nascimento");
 		labelDataNasc.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelDataNasc.setBounds(40, 70, 122, 14);
+		labelDataNasc.setBounds(40, 70, 131, 14);
 		panelInternoCadastroP.add(labelDataNasc);
 		
 		JLabel labelCpf = new JLabel("CPF");
@@ -62,22 +63,22 @@ public class PanelCadastroPaciente extends JPanel {
 		
 		JLabel labelEmail = new JLabel("E-mail");
 		labelEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelEmail.setBounds(40, 100, 36, 14);
+		labelEmail.setBounds(40, 100, 44, 14);
 		panelInternoCadastroP.add(labelEmail);
 		
 		JLabel labelTelefone = new JLabel("Telefone");
 		labelTelefone.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelTelefone.setBounds(40, 130, 51, 14);
+		labelTelefone.setBounds(40, 130, 56, 14);
 		panelInternoCadastroP.add(labelTelefone);
 		
 		JLabel labelEndereco = new JLabel("Endereço");
 		labelEndereco.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelEndereco.setBounds(40, 190, 58, 14);
+		labelEndereco.setBounds(40, 190, 66, 14);
 		panelInternoCadastroP.add(labelEndereco);
 		
 		JLabel labelCidade = new JLabel("Cidade");
 		labelCidade.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelCidade.setBounds(40, 160, 41, 14);
+		labelCidade.setBounds(40, 160, 50, 14);
 		panelInternoCadastroP.add(labelCidade);
 		
 		JLabel labelEstado = new JLabel("Estado");
@@ -90,9 +91,9 @@ public class PanelCadastroPaciente extends JPanel {
 		labelCep.setBounds(375, 190, 29, 14);
 		panelInternoCadastroP.add(labelCep);
 		
-		JLabel labelProntuario = new JLabel("Prontuário");
+		JLabel labelProntuario = new JLabel("Número de prontuário");
 		labelProntuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelProntuario.setBounds(40, 240, 100, 14);
+		labelProntuario.setBounds(40, 240, 144, 14);
 		panelInternoCadastroP.add(labelProntuario);
 		
 		JButton botaoCadastrar = new JButton("Cadastrar");
@@ -113,11 +114,11 @@ public class PanelCadastroPaciente extends JPanel {
 		
 		JFormattedTextField formattedTextFieldCpf = new JFormattedTextField();
 		formattedTextFieldCpf.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		formattedTextFieldCpf.setBounds(314, 67, 108, 20);
+		formattedTextFieldCpf.setBounds(314, 67, 118, 20);
 		panelInternoCadastroP.add(formattedTextFieldCpf);
 		
 		JComboBox comboBoxGenero = new JComboBox();
-		comboBoxGenero.setBounds(506, 68, 30, 22);
+		comboBoxGenero.setBounds(506, 68, 102, 22);
 		panelInternoCadastroP.add(comboBoxGenero);
 		
 		textFieldEmail = new JTextField();
@@ -149,12 +150,13 @@ public class PanelCadastroPaciente extends JPanel {
 		panelInternoCadastroP.add(formattedTextFieldCep);
 		
 		JComboBox comboBoxEstado = new JComboBox();
-		comboBoxEstado.setBounds(445, 158, 30, 22);
+		comboBoxEstado.setBounds(445, 158, 74, 22);
 		panelInternoCadastroP.add(comboBoxEstado);
 		
-		JButton botaoAddProtuario = new JButton("Adicionar Prontuário");
-		botaoAddProtuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		botaoAddProtuario.setBounds(172, 238, 193, 23);
-		panelInternoCadastroP.add(botaoAddProtuario);
+		textField = new JTextField();
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textField.setColumns(10);
+		textField.setBounds(190, 236, 174, 20);
+		panelInternoCadastroP.add(textField);
 	}
 }
