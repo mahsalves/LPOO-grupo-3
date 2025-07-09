@@ -2,14 +2,14 @@ package br.com.otorrinofono.view;
 import javax.swing.*;
 import java.awt.*;
 
-public class HistoricoConsultaUI extends JFrame {
+public class PanelHistoricoConsulta extends JFrame {
 
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public HistoricoConsultaUI() {
+	public PanelHistoricoConsulta() {
         setTitle("Histórico de Consulta");
         setSize(600, 400);
         setLocationRelativeTo(null);
@@ -35,14 +35,14 @@ public class HistoricoConsultaUI extends JFrame {
 
         list.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
-                new DetalhesConsultaUI().setVisible(true);
+                new PanelDetalhesConsulta().setVisible(true);
             }
         });
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            new HistoricoConsultaUI().setVisible(true);
+            new PanelHistoricoConsulta().setVisible(true);
         });
     }
 }

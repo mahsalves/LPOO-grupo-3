@@ -2,14 +2,14 @@ package br.com.otorrinofono.view;
 import javax.swing.*;
 import java.awt.*;
 
-public class DetalhesConsultaUI extends JFrame {
+public class PanelDetalhesConsulta extends JFrame {
 
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public DetalhesConsultaUI() {
+	public PanelDetalhesConsulta() {
         setTitle("Detalhes da Consulta");
         setSize(900, 600);
         setLocationRelativeTo(null);
@@ -54,7 +54,7 @@ public class DetalhesConsultaUI extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            new DetalhesConsultaUI().setVisible(true);
+            new PanelDetalhesConsulta().setVisible(true);
         });
     }
 }  
