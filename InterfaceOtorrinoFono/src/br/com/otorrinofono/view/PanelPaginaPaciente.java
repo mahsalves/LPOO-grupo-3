@@ -6,7 +6,12 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PanelPaginaPaciente extends JPanel {
 
@@ -127,11 +132,39 @@ public class PanelPaginaPaciente extends JPanel {
 		panelInternoPagPaciente.add(labelCepPaciente);
 		
 		JButton btnEditarCadastro = new JButton("Editar Cadastro");
+		btnEditarCadastro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PanelCadastroPaciente painelCadastroPaciente = new PanelCadastroPaciente();
+
+			    
+			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnEditarCadastro);
+
+			    frame.getContentPane().removeAll();
+			    frame.getContentPane().add(painelCadastroPaciente);
+			    frame.revalidate();
+			    frame.repaint();
+			}
+		});
 		btnEditarCadastro.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnEditarCadastro.setBounds(55, 375, 200, 25);
 		panelInternoPagPaciente.add(btnEditarCadastro);
 		
 		JButton btnAdcionarConsultas = new JButton("Adcionar Consultas");
+		btnAdcionarConsultas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PanelConsulta painelConsulta = new PanelConsulta();
+
+			    
+			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnAdcionarConsultas);
+
+			    frame.getContentPane().removeAll();
+			    frame.getContentPane().add(painelConsulta);
+			    frame.revalidate();
+			    frame.repaint();
+			}
+		});
 		btnAdcionarConsultas.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnAdcionarConsultas.setBounds(470, 122, 200, 30);
 		panelInternoPagPaciente.add(btnAdcionarConsultas);
