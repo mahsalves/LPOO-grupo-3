@@ -1,19 +1,13 @@
 package br.com.otorrinofono.view;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class PanelHistoricoConsulta extends JFrame {
+public class PanelHistoricoConsulta extends JPanel {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public PanelHistoricoConsulta() {
-        setTitle("Histórico de Consulta");
-        setSize(600, 400);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public PanelHistoricoConsulta() {
         setLayout(new BorderLayout(10, 10));
 
         JLabel titulo = new JLabel("HISTÓRICO DE CONSULTA", SwingConstants.CENTER);
@@ -35,14 +29,25 @@ public class PanelHistoricoConsulta extends JFrame {
 
         list.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
-                new PanelDetalhesConsulta().setVisible(true);
+                JFrame detalhesFrame = new JFrame("Detalhes da Consulta");
+                detalhesFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                detalhesFrame.setSize(900, 600);
+                detalhesFrame.setLocationRelativeTo(null);
+                detalhesFrame.setContentPane(new PanelDetalhesConsulta());
+                detalhesFrame.setVisible(true);
             }
         });
     }
 
+    // Para testar o JPanel de forma isolada
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            new PanelHistoricoConsulta().setVisible(true);
+            JFrame frame = new JFrame("Histórico de Consulta");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(600, 400);
+            frame.setLocationRelativeTo(null);
+            frame.setContentPane(new PanelHistoricoConsulta());
+            frame.setVisible(true);
         });
     }
 }
