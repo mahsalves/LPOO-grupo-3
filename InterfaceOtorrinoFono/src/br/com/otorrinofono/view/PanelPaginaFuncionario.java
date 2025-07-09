@@ -4,9 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PanelPaginaFuncionario extends JPanel {
 
@@ -113,6 +118,20 @@ public class PanelPaginaFuncionario extends JPanel {
 		panelInternoPagPaciente.add(labelLicensaFuncionario);
 		
 		JButton btnEditarCadastro = new JButton("Editar Cadastro");
+		btnEditarCadastro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PanelCadastroFuncionario painelCadastroFuncionario = new PanelCadastroFuncionario();
+
+			    
+			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnEditarCadastro);
+
+			    frame.getContentPane().removeAll();
+			    frame.getContentPane().add(painelCadastroFuncionario);
+			    frame.revalidate();
+			    frame.repaint();
+			}
+		});
 		btnEditarCadastro.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnEditarCadastro.setBounds(55, 315, 200, 25);
 		panelInternoPagPaciente.add(btnEditarCadastro);

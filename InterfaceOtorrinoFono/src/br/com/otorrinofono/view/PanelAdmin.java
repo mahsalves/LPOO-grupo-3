@@ -6,9 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PanelAdmin extends JPanel {
 
@@ -27,6 +32,20 @@ public class PanelAdmin extends JPanel {
 		add(panelInternoMenu);
 		
 		JButton btnCadastrarFuncionario = new JButton("Cadastrar Funcionário");
+		btnCadastrarFuncionario.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PanelCadastroFuncionario painelCadastroFuncionario = new PanelCadastroFuncionario();
+
+			    
+			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnCadastrarFuncionario);
+
+			    frame.getContentPane().removeAll();
+			    frame.getContentPane().add(painelCadastroFuncionario);
+			    frame.revalidate();
+			    frame.repaint();
+			}
+		});
 		btnCadastrarFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnCadastrarFuncionario.setBounds(115, 80, 175, 25);
 		btnCadastrarFuncionario.addActionListener(new ActionListener() {
@@ -47,6 +66,20 @@ public class PanelAdmin extends JPanel {
 		panelInternoMenu.add(btnHistoricoAcesso);
 		
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PanelMenu painelMenu = new PanelMenu();
+
+			    
+			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnVoltar);
+
+			    frame.getContentPane().removeAll();
+			    frame.getContentPane().add(painelMenu);
+			    frame.revalidate();
+			    frame.repaint();
+			}
+		});
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnVoltar.setBounds(165, 250, 75, 25);
 		panelInternoMenu.add(btnVoltar);
