@@ -1,13 +1,15 @@
+package br.com.otorrinofono.view;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.*;
 
-public class PesquisaPacienteUI extends JFrame {
-    private JTextField campoBusca;
+public class PanelPesquisaPaciente extends JFrame {
+    private static final long serialVersionUID = 1L;
+	private JTextField campoBusca;
     private JTextArea areaInformacoes;
 
-    public PesquisaPacienteUI() {
+    public PanelPesquisaPaciente() {
         configurarJanela();
         inicializarComponentes();
     }
@@ -78,7 +80,7 @@ public class PesquisaPacienteUI extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            new PesquisaPacienteUI().setVisible(true);
+            new PanelPesquisaPaciente().setVisible(true);
         });
     }
 }

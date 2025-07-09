@@ -1,9 +1,15 @@
+package br.com.otorrinofono.view;
 import javax.swing.*;
 import java.awt.*;
 
 public class HistoricoConsultaUI extends JFrame {
 
-    public HistoricoConsultaUI() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public HistoricoConsultaUI() {
         setTitle("Histórico de Consulta");
         setSize(600, 400);
         setLocationRelativeTo(null);

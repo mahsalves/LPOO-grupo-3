@@ -1,9 +1,15 @@
+package br.com.otorrinofono.view;
 import javax.swing.*;
 import java.awt.*;
 
 public class DetalhesConsultaUI extends JFrame {
 
-    public DetalhesConsultaUI() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public DetalhesConsultaUI() {
         setTitle("Detalhes da Consulta");
         setSize(900, 600);
         setLocationRelativeTo(null);

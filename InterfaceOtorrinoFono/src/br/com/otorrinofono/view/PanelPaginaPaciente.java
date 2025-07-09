@@ -1,4 +1,4 @@
-package tela_interface;
+package br.com.otorrinofono.view;
 
 import java.awt.Color;
 
@@ -38,7 +38,7 @@ public class PanelPaginaPaciente extends JPanel {
 		
 		JLabel labelDataNasc = new JLabel("Data de nascimento:");
 		labelDataNasc.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelDataNasc.setBounds(10, 70, 127, 15);
+		labelDataNasc.setBounds(10, 70, 137, 15);
 		panelInternoPagPaciente.add(labelDataNasc);
 		
 		JLabel labelCpf = new JLabel("CPF:");
@@ -126,11 +126,6 @@ public class PanelPaginaPaciente extends JPanel {
 		labelCepPaciente.setBounds(147, 280, 200, 15);
 		panelInternoPagPaciente.add(labelCepPaciente);
 		
-		JButton btnBaixarProntuario = new JButton("Baixar Prontuário");
-		btnBaixarProntuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnBaixarProntuario.setBounds(147, 304, 150, 25);
-		panelInternoPagPaciente.add(btnBaixarProntuario);
-		
 		JButton btnEditarCadastro = new JButton("Editar Cadastro");
 		btnEditarCadastro.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnEditarCadastro.setBounds(55, 375, 200, 25);
@@ -145,5 +140,10 @@ public class PanelPaginaPaciente extends JPanel {
 		btnHistoricoDeConsultas.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnHistoricoDeConsultas.setBounds(470, 175, 200, 30);
 		panelInternoPagPaciente.add(btnHistoricoDeConsultas);
+		
+		JLabel lblNmeroDoPronturio = new JLabel("Número do prontuário");
+		lblNmeroDoPronturio.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNmeroDoPronturio.setBounds(147, 313, 200, 15);
+		panelInternoPagPaciente.add(lblNmeroDoPronturio);
 	}
 }

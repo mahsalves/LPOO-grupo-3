@@ -1,4 +1,4 @@
-package tela_interface;
+package br.com.otorrinofono.view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -46,7 +46,7 @@ public class PanelMenu extends JPanel {
 			}
 		});
 		BotaoCadastrarPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		BotaoCadastrarPaciente.setBounds(125, 80, 150, 25);
+		BotaoCadastrarPaciente.setBounds(125, 80, 159, 25);
 		BotaoCadastrarPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -55,14 +55,42 @@ public class PanelMenu extends JPanel {
 		panelInternoMenu.add(BotaoCadastrarPaciente);
 		
 		JButton PotaoPesquisarPaciente = new JButton("Pesquisar paciente");
+		PotaoPesquisarPaciente.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PanelPesquisaPaciente painelPesquisaPaciente = new PanelPesquisaPaciente();
+
+			    
+			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(PotaoPesquisarPaciente);
+
+			    frame.getContentPane().removeAll();
+			    frame.getContentPane().add(painelPesquisaPaciente);
+			    frame.revalidate();
+			    frame.repaint();
+			}
+		});
 		PotaoPesquisarPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		PotaoPesquisarPaciente.setBounds(125, 120, 150, 25);
+		PotaoPesquisarPaciente.setBounds(125, 120, 159, 25);
 		panelInternoMenu.add(PotaoPesquisarPaciente);
 		
-		JButton BotaoPerfilUsuario = new JButton("Perfil do usuário");
-		BotaoPerfilUsuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		BotaoPerfilUsuario.setBounds(125, 160, 150, 25);
-		panelInternoMenu.add(BotaoPerfilUsuario);
+		JButton BotaoPerfilFuncionario = new JButton("Perfil do funcionário");
+		BotaoPerfilFuncionario.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PanelPaginaFuncionario painelPaginaFuncionario = new PanelPaginaFuncionario();
+
+			    
+			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(BotaoPerfilFuncionario);
+
+			    frame.getContentPane().removeAll();
+			    frame.getContentPane().add(painelPaginaFuncionario);
+			    frame.revalidate();
+			    frame.repaint();
+			}
+		});
+		BotaoPerfilFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		BotaoPerfilFuncionario.setBounds(125, 160, 159, 25);
+		panelInternoMenu.add(BotaoPerfilFuncionario);
 		
 		JButton BotaoFuncoesAdmin = new JButton("Funções do admin.");
 		BotaoFuncoesAdmin.addMouseListener(new MouseAdapter() {
@@ -80,7 +108,7 @@ public class PanelMenu extends JPanel {
 			}
 		});
 		BotaoFuncoesAdmin.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		BotaoFuncoesAdmin.setBounds(125, 200, 150, 25);
+		BotaoFuncoesAdmin.setBounds(125, 200, 159, 25);
 		panelInternoMenu.add(BotaoFuncoesAdmin);
 		
 		JLabel LabelMenuTitulo = new JLabel("Menu Principal");

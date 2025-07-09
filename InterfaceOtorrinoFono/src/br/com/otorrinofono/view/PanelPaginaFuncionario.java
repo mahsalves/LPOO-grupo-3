@@ -1,4 +1,4 @@
-package tela_interface;
+package br.com.otorrinofono.view;
 
 import java.awt.Color;
 import java.awt.Font;

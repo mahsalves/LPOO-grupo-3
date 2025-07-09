@@ -1,4 +1,4 @@
-package tela_interface;
+package br.com.otorrinofono.view;
 
 import java.awt.EventQueue;
 
@@ -61,7 +61,7 @@ public class Main extends JFrame {
 		
 		JLabel labelTitulo = new JLabel("Interface Otorrino./Fono.");
 		labelTitulo.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		labelTitulo.setBounds(100, 11, 200, 14);
+		labelTitulo.setBounds(100, 11, 208, 14);
 		panelInternoLogin.add(labelTitulo);
 		
 		JLabel lblNewLabel = new JLabel("Usuário:");
