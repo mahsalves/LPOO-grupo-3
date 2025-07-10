@@ -40,6 +40,8 @@ public class PanelAdmin extends JPanel {
 			    
 			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnCadastrarFuncionario);
 
+			    painelCadastroFuncionario.setPainelAnterior(PanelAdmin.this);
+			    
 			    frame.getContentPane().removeAll();
 			    frame.getContentPane().add(painelCadastroFuncionario);
 			    frame.revalidate();

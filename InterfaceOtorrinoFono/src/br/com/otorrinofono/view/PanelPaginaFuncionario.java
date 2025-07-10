@@ -126,6 +126,8 @@ public class PanelPaginaFuncionario extends JPanel {
 			    
 			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnEditarCadastro);
 
+			    painelCadastroFuncionario.setPainelAnterior(PanelPaginaFuncionario.this);
+			    
 			    frame.getContentPane().removeAll();
 			    frame.getContentPane().add(painelCadastroFuncionario);
 			    frame.revalidate();
@@ -147,4 +149,8 @@ public class PanelPaginaFuncionario extends JPanel {
 		panelInternoPagPaciente.add(btnRemoverFuncionario);
 	}
 
+
+
+	
+	
 }
