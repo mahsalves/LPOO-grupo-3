@@ -49,6 +49,14 @@ public class PanelMenu extends JPanel {
 		BotaoCadastrarPaciente.setBounds(125, 80, 159, 25);
 		BotaoCadastrarPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				PanelCadastroPaciente painelCadastro = new PanelCadastroPaciente();
+				painelCadastro.setPainelAnterior(PanelMenu.this);
+
+				JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(PanelMenu.this);
+				frame.getContentPane().remove(PanelMenu.this);
+				frame.getContentPane().add(painelCadastro);
+				frame.revalidate();
+				frame.repaint();
 			}
 		});
 		panelInternoMenu.setLayout(null);

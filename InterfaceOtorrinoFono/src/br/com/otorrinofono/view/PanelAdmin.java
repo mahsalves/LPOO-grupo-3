@@ -58,6 +58,20 @@ public class PanelAdmin extends JPanel {
 		panelInternoMenu.add(btnCadastrarFuncionario);
 		
 		JButton btnPesquisarFuncionario = new JButton("Pesquisar Funcionário");
+		btnPesquisarFuncionario.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PanelPesquisaFuncionario painelPesquisaFuncionario = new PanelPesquisaFuncionario();
+
+			    
+			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnPesquisarFuncionario);
+
+			    frame.getContentPane().removeAll();
+			    frame.getContentPane().add(painelPesquisaFuncionario);
+			    frame.revalidate();
+			    frame.repaint();
+			}
+		});
 		btnPesquisarFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnPesquisarFuncionario.setBounds(115, 120, 175, 25);
 		panelInternoMenu.add(btnPesquisarFuncionario);

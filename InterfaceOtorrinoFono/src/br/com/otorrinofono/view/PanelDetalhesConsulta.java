@@ -9,11 +9,11 @@ public class PanelDetalhesConsulta extends JPanel {
 
     public PanelDetalhesConsulta() {
         setLayout(null);
-        setBackground(new Color(0, 128, 255)); // fundo azul
+        setBackground(new Color(0, 128, 255));
 
         JPanel panelInterno = new JPanel();
         panelInterno.setLayout(null);
-        panelInterno.setBounds(100, 50, 700, 450); // centralizar na tela
+        panelInterno.setBounds(100, 50, 700, 450);
         panelInterno.setBackground(Color.WHITE);
         add(panelInterno);
 

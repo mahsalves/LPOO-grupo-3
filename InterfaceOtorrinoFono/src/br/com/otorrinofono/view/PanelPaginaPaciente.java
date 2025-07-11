@@ -136,9 +136,10 @@ public class PanelPaginaPaciente extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				PanelCadastroPaciente painelCadastroPaciente = new PanelCadastroPaciente();
-
-			    
+				
 			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnEditarCadastro);
+			    
+			    painelCadastroPaciente.setPainelAnterior(PanelPaginaPaciente.this);
 
 			    frame.getContentPane().removeAll();
 			    frame.getContentPane().add(painelCadastroPaciente);
@@ -150,17 +151,17 @@ public class PanelPaginaPaciente extends JPanel {
 		btnEditarCadastro.setBounds(55, 375, 200, 25);
 		panelInternoPagPaciente.add(btnEditarCadastro);
 		
-		JButton btnAdcionarConsultas = new JButton("Adcionar Consultas");
+		JButton btnAdcionarConsultas = new JButton("Adicionar Consultas");
 		btnAdcionarConsultas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				PanelNovaConsulta painelConsulta = new PanelNovaConsulta();
+				PanelNovaConsulta painelNovaConsulta = new PanelNovaConsulta();
 
 			    
 			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnAdcionarConsultas);
 
 			    frame.getContentPane().removeAll();
-			    frame.getContentPane().add(painelConsulta);
+			    frame.getContentPane().add(painelNovaConsulta);
 			    frame.revalidate();
 			    frame.repaint();
 			}
@@ -170,6 +171,20 @@ public class PanelPaginaPaciente extends JPanel {
 		panelInternoPagPaciente.add(btnAdcionarConsultas);
 		
 		JButton btnHistoricoDeConsultas = new JButton("Histórico de Consultas");
+		btnHistoricoDeConsultas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PanelHistoricoConsultasCorrigido painelHistoricoConsultas = new PanelHistoricoConsultasCorrigido();
+
+			    
+			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnHistoricoDeConsultas);
+
+			    frame.getContentPane().removeAll();
+			    frame.getContentPane().add(painelHistoricoConsultas);
+			    frame.revalidate();
+			    frame.repaint();
+			}
+		});
 		btnHistoricoDeConsultas.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnHistoricoDeConsultas.setBounds(470, 175, 200, 30);
 		panelInternoPagPaciente.add(btnHistoricoDeConsultas);
@@ -178,5 +193,10 @@ public class PanelPaginaPaciente extends JPanel {
 		lblNmeroDoPronturio.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNmeroDoPronturio.setBounds(147, 313, 200, 15);
 		panelInternoPagPaciente.add(lblNmeroDoPronturio);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnVoltar.setBounds(499, 415, 150, 25);
+		panelInternoPagPaciente.add(btnVoltar);
 	}
 }

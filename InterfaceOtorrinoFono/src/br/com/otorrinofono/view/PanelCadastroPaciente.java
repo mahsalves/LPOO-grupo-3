@@ -8,10 +8,14 @@ import java.awt.Font;
 import java.text.SimpleDateFormat;
 
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
 import javax.swing.JComboBox;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PanelCadastroPaciente extends JPanel {
 
@@ -21,6 +25,8 @@ public class PanelCadastroPaciente extends JPanel {
 	private JTextField textFieldCidade;
 	private JTextField textFieldEndereco;
 	private JTextField textField;
+	
+	private JPanel painelAnterior;
 
 	/**
 	 * Create the panel.
@@ -98,7 +104,7 @@ public class PanelCadastroPaciente extends JPanel {
 		
 		JButton botaoCadastrar = new JButton("Cadastrar");
 		botaoCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		botaoCadastrar.setBounds(300, 450, 150, 25);
+		botaoCadastrar.setBounds(578, 454, 150, 25);
 		panelInternoCadastroP.add(botaoCadastrar);
 		
 		textFieldNome = new JTextField();
@@ -158,5 +164,31 @@ public class PanelCadastroPaciente extends JPanel {
 		textField.setColumns(10);
 		textField.setBounds(190, 236, 174, 20);
 		panelInternoCadastroP.add(textField);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnVoltar);
+			    
+			    JPanel painelAnterior = getPainelAnterior();
+
+			    frame.getContentPane().removeAll();
+			    frame.getContentPane().add(painelAnterior);
+			    frame.revalidate();
+			    frame.repaint();
+			}
+		});
+		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnVoltar.setBounds(20, 454, 150, 25);
+		panelInternoCadastroP.add(btnVoltar);
+	}
+		
+		public JPanel getPainelAnterior() {
+			return painelAnterior;
+		}
+
+		public void setPainelAnterior(JPanel painelAnterior) {
+			this.painelAnterior = painelAnterior;
 	}
 }

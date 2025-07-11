@@ -139,6 +139,20 @@ public class PanelPaginaFuncionario extends JPanel {
 		panelInternoPagPaciente.add(btnEditarCadastro);
 		
 		JButton btnHistoricoDeConsultas = new JButton("Histórico de Consultas");
+		btnHistoricoDeConsultas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PanelHistoricoConsultasCorrigido painelHistoricoConsultas = new PanelHistoricoConsultasCorrigido();
+
+			    
+			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnHistoricoDeConsultas);
+
+			    frame.getContentPane().removeAll();
+			    frame.getContentPane().add(painelHistoricoConsultas);
+			    frame.revalidate();
+			    frame.repaint();
+			}
+		});
 		btnHistoricoDeConsultas.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnHistoricoDeConsultas.setBounds(470, 122, 200, 30);
 		panelInternoPagPaciente.add(btnHistoricoDeConsultas);

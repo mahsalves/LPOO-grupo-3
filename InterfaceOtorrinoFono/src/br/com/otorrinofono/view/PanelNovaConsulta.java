@@ -7,7 +7,12 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PanelNovaConsulta extends JPanel {
 
@@ -103,6 +108,20 @@ public class PanelNovaConsulta extends JPanel {
 		panel.add(BotaoAnexarExamesConsulta);
 		
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PanelPaginaPaciente painelPaginaPaciente = new PanelPaginaPaciente();
+
+			    
+			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnVoltar);
+
+			    frame.getContentPane().removeAll();
+			    frame.getContentPane().add(painelPaginaPaciente);
+			    frame.revalidate();
+			    frame.repaint();
+			}
+		});
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnVoltar.setBounds(9, 447, 96, 25);
 		panel.add(btnVoltar);
