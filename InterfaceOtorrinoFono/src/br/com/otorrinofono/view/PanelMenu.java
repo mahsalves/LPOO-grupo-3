@@ -58,7 +58,7 @@ public class PanelMenu extends JPanel {
 		PotaoPesquisarPaciente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				PanelPesquisaPaciente painelPesquisaPaciente = new PanelPesquisaPaciente();
+				PanelPesquisaPacienteCorrigido painelPesquisaPaciente = new PanelPesquisaPacienteCorrigido();
 
 			    
 			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(PotaoPesquisarPaciente);

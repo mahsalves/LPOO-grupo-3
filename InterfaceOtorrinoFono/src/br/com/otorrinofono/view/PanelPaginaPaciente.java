@@ -154,7 +154,7 @@ public class PanelPaginaPaciente extends JPanel {
 		btnAdcionarConsultas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				PanelConsulta painelConsulta = new PanelConsulta();
+				PanelNovaConsulta painelConsulta = new PanelNovaConsulta();
 
 			    
 			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnAdcionarConsultas);

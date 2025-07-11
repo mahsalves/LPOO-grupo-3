@@ -9,32 +9,32 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
-public class PanelConsulta extends JPanel {
+public class PanelNovaConsulta extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textField_anamnese;
 	private JTextField textfield_avaliacaovocal;
 	private JTextField textField_diagnostico;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField textField_conduta;
+	private JTextField textField_observacoes;
 
 	/**
 	 * Create the panel.
 	 */
-	public PanelConsulta() {
+	public PanelNovaConsulta() {
 		setBackground(new Color(0, 128, 255));
 		setBounds(0, 0, 884, 561);
 		setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(76, 65, 718, 443);
+		panel.setBounds(56, 42, 749, 482);
 		add(panel);
 		panel.setLayout(null);
 		
 		JLabel LabelNovaConsulta = new JLabel("Nova consulta");
 		LabelNovaConsulta.setHorizontalAlignment(SwingConstants.CENTER);
 		LabelNovaConsulta.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		LabelNovaConsulta.setBounds(266, 24, 118, 21);
+		LabelNovaConsulta.setBounds(292, 25, 118, 21);
 		panel.add(LabelNovaConsulta);
 		
 		JLabel LabelAnamnese = new JLabel("Anamnese");
@@ -43,6 +43,7 @@ public class PanelConsulta extends JPanel {
 		panel.add(LabelAnamnese);
 		
 		textField_anamnese = new JTextField();
+		textField_anamnese.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textField_anamnese.setBounds(115, 83, 199, 106);
 		panel.add(textField_anamnese);
 		textField_anamnese.setColumns(10);
@@ -58,11 +59,13 @@ public class PanelConsulta extends JPanel {
 		panel.add(LabelDiagnostico);
 		
 		textfield_avaliacaovocal = new JTextField();
+		textfield_avaliacaovocal.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textfield_avaliacaovocal.setColumns(10);
 		textfield_avaliacaovocal.setBounds(115, 199, 199, 106);
 		panel.add(textfield_avaliacaovocal);
 		
 		textField_diagnostico = new JTextField();
+		textField_diagnostico.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textField_diagnostico.setColumns(10);
 		textField_diagnostico.setBounds(115, 315, 199, 106);
 		panel.add(textField_diagnostico);
@@ -77,24 +80,31 @@ public class PanelConsulta extends JPanel {
 		labelObservacoes.setBounds(370, 243, 79, 13);
 		panel.add(labelObservacoes);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(469, 83, 199, 106);
-		panel.add(textField);
+		textField_conduta = new JTextField();
+		textField_conduta.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textField_conduta.setColumns(10);
+		textField_conduta.setBounds(469, 83, 199, 106);
+		panel.add(textField_conduta);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(469, 199, 199, 106);
-		panel.add(textField_1);
+		textField_observacoes = new JTextField();
+		textField_observacoes.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textField_observacoes.setColumns(10);
+		textField_observacoes.setBounds(469, 199, 199, 106);
+		panel.add(textField_observacoes);
 		
 		JButton BotaoRegistrarConsulta = new JButton("Registrar");
 		BotaoRegistrarConsulta.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		BotaoRegistrarConsulta.setBounds(591, 386, 96, 35);
+		BotaoRegistrarConsulta.setBounds(635, 430, 104, 42);
 		panel.add(BotaoRegistrarConsulta);
 		
 		JButton BotaoAnexarExamesConsulta = new JButton("Anexar exames");
 		BotaoAnexarExamesConsulta.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		BotaoAnexarExamesConsulta.setBounds(495, 325, 140, 21);
+		BotaoAnexarExamesConsulta.setBounds(495, 325, 140, 34);
 		panel.add(BotaoAnexarExamesConsulta);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnVoltar.setBounds(9, 447, 96, 25);
+		panel.add(btnVoltar);
 	}
 }
