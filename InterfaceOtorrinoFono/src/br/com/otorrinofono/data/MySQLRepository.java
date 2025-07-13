@@ -38,8 +38,11 @@ public class MySQLRepository implements Repository {
 	}
 	
 	private Connection connect() throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		return DriverManager.getConnection("jdbc:mysql://localhost:3306/lpoo-2025.1", "root", "12345");
+	    Class.forName("com.mysql.cj.jdbc.Driver");
+	    return DriverManager.getConnection(
+	        br.com.otorrinofono.util.DatabaseConnection.DB_URL,
+	        br.com.otorrinofono.util.DatabaseConnection.USER,
+	        br.com.otorrinofono.util.DatabaseConnection.PASS
+	    );
 	}
-
 }
