@@ -100,9 +100,9 @@ public class Main extends JFrame {
 		        if (funcionario != null) {
 		            JOptionPane.showMessageDialog(null, "Login bem-sucedido!");
 
-		            PanelPaginaFuncionario telaFuncionario = new PanelPaginaFuncionario();
+		            PanelMenu painelMenu = new PanelMenu();
 		            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnEntrar);
-		            frame.setContentPane(telaFuncionario);
+		            frame.setContentPane(painelMenu);
 		            frame.revalidate();
 		            frame.repaint();
 		        } else {
