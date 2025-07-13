@@ -6,20 +6,31 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 import javax.swing.JList;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class PanelHistoricoConsultasCorrigido extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private JPanel painelAnterior;
 
 	/**
 	 * Create the panel.
 	 */
+	
+	public PanelHistoricoConsultasCorrigido(JPanel painelAnterior) {
+	    this();
+	    this.painelAnterior = painelAnterior;
+	}
+	
+	
 	public PanelHistoricoConsultasCorrigido() {
 		setBackground(new Color(0, 128, 255));
 		setBounds(0, 0, 884, 561);
@@ -49,6 +60,11 @@ public class PanelHistoricoConsultasCorrigido extends JPanel {
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnVoltar);
+		        frame.getContentPane().removeAll();
+		        frame.getContentPane().add(painelAnterior);
+		        frame.revalidate();
+		        frame.repaint();
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));

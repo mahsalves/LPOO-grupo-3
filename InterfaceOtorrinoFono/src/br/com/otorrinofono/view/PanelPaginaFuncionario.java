@@ -16,10 +16,12 @@ import java.awt.event.MouseEvent;
 public class PanelPaginaFuncionario extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private JPanel painelAnterior;
 
 	/**
 	 * Create the panel.
 	 */
+	
 	public PanelPaginaFuncionario() {
 		setBackground(new Color(0, 128, 255));
 		setBounds(0, 0, 884, 561);
@@ -135,36 +137,59 @@ public class PanelPaginaFuncionario extends JPanel {
 			}
 		});
 		btnEditarCadastro.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnEditarCadastro.setBounds(55, 315, 200, 25);
+		btnEditarCadastro.setBounds(470, 231, 200, 30);
 		panelInternoPagPaciente.add(btnEditarCadastro);
 		
 		JButton btnHistoricoDeConsultas = new JButton("Histórico de Consultas");
 		btnHistoricoDeConsultas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				PanelHistoricoConsultasCorrigido painelHistoricoConsultas = new PanelHistoricoConsultasCorrigido();
+				PanelHistoricoConsultasCorrigido painelHistoricoConsultas = new PanelHistoricoConsultasCorrigido(PanelPaginaFuncionario.this);
 
-			    
-			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnHistoricoDeConsultas);
-
-			    frame.getContentPane().removeAll();
-			    frame.getContentPane().add(painelHistoricoConsultas);
-			    frame.revalidate();
-			    frame.repaint();
+		        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnHistoricoDeConsultas);
+		        frame.getContentPane().removeAll();
+		        frame.getContentPane().add(painelHistoricoConsultas);
+		        frame.revalidate();
+		        frame.repaint();
 			}
 		});
-		btnHistoricoDeConsultas.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnHistoricoDeConsultas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnHistoricoDeConsultas.setBounds(470, 122, 200, 30);
 		panelInternoPagPaciente.add(btnHistoricoDeConsultas);
 		
 		JButton btnRemoverFuncionario = new JButton("Remover Funcionario");
-		btnRemoverFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnRemoverFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnRemoverFuncionario.setBounds(470, 175, 200, 30);
 		panelInternoPagPaciente.add(btnRemoverFuncionario);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnVoltar);
+			    
+			    JPanel painelAnterior = getPainelAnterior();
+
+			    frame.getContentPane().removeAll();
+			    frame.getContentPane().add(painelAnterior);
+			    frame.revalidate();
+			    frame.repaint();
+			}
+			
+		});
+		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnVoltar.setBounds(470, 285, 200, 30);
+		panelInternoPagPaciente.add(btnVoltar);
+	}
+	
+	
+	public JPanel getPainelAnterior() {
+		return painelAnterior;
+	}
+
+	public void setPainelAnterior(JPanel painelAnterior) {
+		this.painelAnterior = painelAnterior;
 	}
 
 
-
-	
-	
 }

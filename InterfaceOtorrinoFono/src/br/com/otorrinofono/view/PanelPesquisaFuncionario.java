@@ -60,7 +60,7 @@ public class PanelPesquisaFuncionario extends JPanel {
 		areaInformacoes.setLineWrap(true);
 		areaInformacoes.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		areaInformacoes.setEditable(false);
-		areaInformacoes.setBorder(BorderFactory.createTitledBorder("Informações do Paciente"));
+		areaInformacoes.setBorder(BorderFactory.createTitledBorder("Informações"));
 		areaInformacoes.setBounds(10, 94, 736, 328);
 		panel.add(areaInformacoes);
 		

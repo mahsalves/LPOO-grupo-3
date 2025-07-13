@@ -86,14 +86,13 @@ public class PanelMenu extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				PanelPaginaFuncionario painelPaginaFuncionario = new PanelPaginaFuncionario();
+				painelPaginaFuncionario.setPainelAnterior(PanelMenu.this);
 
-			    
-			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(BotaoPerfilFuncionario);
-
-			    frame.getContentPane().removeAll();
-			    frame.getContentPane().add(painelPaginaFuncionario);
-			    frame.revalidate();
-			    frame.repaint();
+				JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(BotaoPerfilFuncionario);
+				frame.getContentPane().removeAll();
+				frame.getContentPane().add(painelPaginaFuncionario);
+				frame.revalidate();
+				frame.repaint();
 			}
 		});
 		BotaoPerfilFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -124,6 +123,10 @@ public class PanelMenu extends JPanel {
 		LabelMenuTitulo.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		LabelMenuTitulo.setBounds(125, 30, 150, 18);
 		panelInternoMenu.add(LabelMenuTitulo);
+		
+		JButton btnSair = new JButton("Sair");
+		btnSair.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnSair.setBounds(125, 265, 159, 25);
+		panelInternoMenu.add(btnSair);
 	}
-
 }

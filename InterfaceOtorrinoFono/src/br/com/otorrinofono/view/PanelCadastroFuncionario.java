@@ -189,7 +189,6 @@ public class PanelCadastroFuncionario extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				PanelPaginaFuncionario painelPaginaFuncionario = new PanelPaginaFuncionario();
-
 			    
 			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnVoltar);
 
