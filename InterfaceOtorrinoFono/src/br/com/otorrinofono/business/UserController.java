@@ -1,7 +1,6 @@
 package br.com.otorrinofono.business;
 
-import br.com.otorrinofono.MySQLRepository;
-import br.com.otorrinofono.Repository;
+import br.com.otorrinofono.data.*;
 import br.com.otorrinofono.entities.User;
 import br.com.otorrinofono.exception.BusinessException;
 
