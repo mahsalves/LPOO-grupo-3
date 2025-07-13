@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.JOptionPane;
 
 public class PanelMenu extends JPanel {
 
@@ -125,6 +126,20 @@ public class PanelMenu extends JPanel {
 		panelInternoMenu.add(LabelMenuTitulo);
 		
 		JButton btnSair = new JButton("Sair");
+		btnSair.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?", "Confirmação", JOptionPane.YES_NO_OPTION);
+		        if (opcao == JOptionPane.YES_OPTION) {
+		            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnSair);
+		            frame.dispose();
+
+		          
+		            Main telaLogin = new Main();
+		            telaLogin.setVisible(true);
+		        }
+		    }
+		});
 		btnSair.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnSair.setBounds(125, 265, 159, 25);
 		panelInternoMenu.add(btnSair);
