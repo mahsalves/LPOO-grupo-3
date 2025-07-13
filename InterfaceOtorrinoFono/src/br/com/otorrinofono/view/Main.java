@@ -13,13 +13,21 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
+
+import br.com.otorrinofono.entities.Funcionario;
+import br.com.otorrinofono.data.FuncionarioRepository;
 
 public class Main extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JPasswordField passwordField;
+	private JTextField textField_login;
+	private JPasswordField passwordField_senha;
 
 	/**
 	 * Launch the application.
@@ -64,42 +72,52 @@ public class Main extends JFrame {
 		labelTitulo.setBounds(100, 11, 208, 14);
 		panelInternoLogin.add(labelTitulo);
 		
-		JLabel lblNewLabel = new JLabel("Usuário:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(100, 65, 50, 14);
-		panelInternoLogin.add(lblNewLabel);
+		JLabel lblLogin = new JLabel("Login:");
+		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblLogin.setBounds(100, 65, 50, 14);
+		panelInternoLogin.add(lblLogin);
 		
 		JLabel lblSenha = new JLabel("Senha:");
 		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblSenha.setBounds(100, 121, 46, 14);
 		panelInternoLogin.add(lblSenha);
 		
-		textField = new JTextField();
-		textField.setBounds(100, 90, 197, 20);
-		panelInternoLogin.add(textField);
-		textField.setColumns(10);
+		textField_login = new JTextField();
+		textField_login.setBounds(100, 90, 197, 20);
+		panelInternoLogin.add(textField_login);
+		textField_login.setColumns(10);
 		
-		PanelMenu painelMenu = new PanelMenu();
-		
-		JButton btnNewButton = new JButton("Entrar");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		JButton btnEntrar = new JButton("Entrar");
+		btnEntrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				getContentPane().remove(panelLogin);
+				String cpf = textField_login.getText();
+				String senha = new String(passwordField_senha.getPassword());
 
-		        getContentPane().add(painelMenu);
+		        FuncionarioRepository repo = new FuncionarioRepository();
+		        Funcionario funcionario = repo.autenticar(cpf, senha);
 
-		        revalidate();
-		        repaint();
-			}
+		        if (funcionario != null) {
+		            JOptionPane.showMessageDialog(null, "Login bem-sucedido!");
+
+		            PanelPaginaFuncionario telaFuncionario = new PanelPaginaFuncionario();
+		            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnEntrar);
+		            frame.setContentPane(telaFuncionario);
+		            frame.revalidate();
+		            frame.repaint();
+		        } else {
+		            JOptionPane.showMessageDialog(null, "CPF ou senha incorretos.");
+		        }
+		    }
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton.setBounds(150, 214, 100, 25);
-		panelInternoLogin.add(btnNewButton);
+		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnEntrar.setBounds(150, 214, 100, 25);
+		panelInternoLogin.add(btnEntrar);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(98, 146, 199, 20);
-		panelInternoLogin.add(passwordField);
+		passwordField_senha = new JPasswordField();
+		passwordField_senha.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		passwordField_senha.setBounds(98, 146, 199, 20);
+		panelInternoLogin.add(passwordField_senha);
 
 	}
 }
