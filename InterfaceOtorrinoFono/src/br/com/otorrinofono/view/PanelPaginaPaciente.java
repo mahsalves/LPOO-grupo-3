@@ -9,25 +9,30 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import java.util.Optional;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import br.com.otorrinofono.entities.Paciente;
+import br.com.otorrinofono.data.PacienteRepository;
+
 public class PanelPaginaPaciente extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private int pacienteId;
+	private String pacienteCpf;
 	
-	 private JLabel labelNome;
-	 private JLabel labelCpf;
-	 private JLabel labelDataNascimento;
-	 private JLabel labelTelefone;
-	 private JLabel labelEmail;
-	 private JLabel labelGenero;
-	 private JLabel labelEndereco;
-	 private JLabel labelEstado;
-	 private JLabel labelCep;
-	 private JLabel labelProntuario;
+	private JLabel labelNomePaciente;
+	private JLabel labelCpfPaciente;
+	private JLabel labelDataNascPaciente;
+	private JLabel labelTelefonePaciente;
+	private JLabel labelEmailPaciente;
+	private JLabel labelGeneroPaciente;
+	private JLabel labelEnderecoPaciente;
+	private JLabel labelEstadoPaciente;
+	private JLabel labelCepPaciente;
+	private JLabel labelProntuarioPaciente;
 
 	/**
 	 * Create the panel.
@@ -143,26 +148,6 @@ public class PanelPaginaPaciente extends JPanel {
 		labelCepPaciente.setBounds(147, 280, 200, 15);
 		panelInternoPagPaciente.add(labelCepPaciente);
 		
-		 public void setPacienteId(int pacienteId) {
-		        this.pacienteId = pacienteId;
-		        carregarDadosDoPaciente();
-		    }
-
-		    private void carregarDadosDoPaciente() {
-		        PacienteRepository repo = new PacienteRepository();
-		        Optional<Paciente> pacienteOptional = repo.buscarPorId(pacienteId);
-
-		        if (pacienteOptional.isPresent()) {
-		            Paciente paciente = pacienteOptional.get();
-		            labelNome.setText(paciente.getNome());
-		            labelCpf.setText(paciente.getCpf());
-		            labelDataNascimento.setText(paciente.getDataNascimento().toString());
-		            labelTelefone.setText(paciente.getTelefone());
-		        } else {
-		            JOptionPane.showMessageDialog(this, "Paciente não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
-		        }
-		    }
-	}
 		
 		JButton btnEditarCadastro = new JButton("Editar Cadastro");
 		btnEditarCadastro.addMouseListener(new MouseAdapter() {
@@ -232,4 +217,31 @@ public class PanelPaginaPaciente extends JPanel {
 		btnVoltar.setBounds(499, 415, 150, 25);
 		panelInternoPagPaciente.add(btnVoltar);
 	}
+}
+
+public void setPacienteCpf(String cpf) {
+	this.pacienteCpf = cpf;
+	carregarDadosDoPaciente();
+}
+
+private void carregarDadosDoPaciente() {
+	PacienteRepository repo = new PacienteRepository();
+	Optional<Paciente> pacienteOptional = repo.buscarPorCpf(pacienteCpf);
+
+	if (pacienteOptional.isPresent()) {
+		Paciente paciente = pacienteOptional.get();
+		labelNomeValor.setText(paciente.getNome());
+		labelCpfValor.setText(paciente.getCpf());
+		labelDataNascimentoValor.setText(paciente.getDataNascimento().toString());
+		labelTelefoneValor.setText(paciente.getTelefone());
+		labelEmailValor.setText(paciente.getEmail());
+		labelGeneroValor.setText(paciente.getGenero());
+		labelEnderecoValor.setText(paciente.getEndereco());
+		labelEstadoValor.setText(paciente.getEstado());
+		labelCepValor.setText(paciente.getCep());
+		labelProntuarioValor.setText(paciente.getProntuario());
+	} else {
+		JOptionPane.showMessageDialog(this, "Paciente não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
+	}
+}
 }

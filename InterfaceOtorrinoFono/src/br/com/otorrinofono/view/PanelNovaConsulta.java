@@ -36,12 +36,12 @@ public class PanelNovaConsulta extends JPanel {
 	private JTextField textField_conduta;
 	private JTextField textField_observacoes;
 	private byte[] anexoExameBytes = null;
+	private String pacienteCpf;
 	
-	private int idPacienteAtual;
 
-	public PanelNovaConsulta(int idPaciente) {
-	    this.idPacienteAtual = idPaciente;
-	    }
+	public PanelNovaConsulta(String cpfPaciente) {
+	    this.cpfPacienteAtual = cpfPaciente;
+	}
 
 	/**
 	 * Create the panel.
@@ -132,9 +132,6 @@ public class PanelNovaConsulta extends JPanel {
 
 		            consulta.setDataConsulta(LocalDate.now());
 
-		            // Aqui falta definir o pacienteId para a consulta. 
-		            // Você precisa ter esse ID do paciente que está sendo atendido para associar.
-		            // Pode passar por construtor, parâmetro, variável da classe, etc.
 		            consulta.setPacienteId(idPacienteAtual);
 
 		            ConsultaRepository dao = new ConsultaRepository();
@@ -170,10 +167,10 @@ public class PanelNovaConsulta extends JPanel {
 			        File file = fileChooser.getSelectedFile();
 			        try {
 			            byte[] fileContent = Files.readAllBytes(file.toPath());
-			            this.anexoExameBytes = fileContent;
+			            anexoExameBytes = fileContent;
 			        } catch (IOException ex) {
 			            ex.printStackTrace();
-			            JOptionPane.showMessageDialog(this, "Erro ao ler o arquivo.");
+			            JOptionPane.showMessageDialog(PanelNovaConsulta.this, "Erro ao ler o arquivo.");
 			        }
 			    }
 			}

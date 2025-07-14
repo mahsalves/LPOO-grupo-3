@@ -37,7 +37,8 @@ public class ConsultaRepository {
                 stmt = conn.prepareStatement(sql);
             }
 
-            stmt.setInt(1, consulta.getPacienteId());
+            //stmt.setInt(1, consulta.getPacienteId());
+            stmt.setString(1, consulta.getPacienteCpf());
             stmt.setDate(2, consulta.getDataConsulta() != null ? Date.valueOf(consulta.getDataConsulta()) : null);
             stmt.setString(3, consulta.getAnamnese());
             stmt.setString(4, consulta.getAvaliacaoVocal());
