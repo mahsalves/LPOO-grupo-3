@@ -10,12 +10,12 @@ import br.com.otorrinofono.entities.Funcionario;
 import br.com.otorrinofono.exception.SystemException;
 import br.com.otorrinofono.util.DatabaseConnection;
 
-import java.sql.DriverManager;
+//import java.sql.DriverManager;
 
 public class FuncionarioRepository {
-
-    public Funcionario autenticar(String cpf, String senha) {
-        try {
+	public Funcionario autenticar(String cpf, String senha) {
+        
+		try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DatabaseConnection.getConnection();
             
@@ -36,6 +36,7 @@ public class FuncionarioRepository {
                 funcionario.setGenero(rs.getString("genero"));
                 funcionario.setFuncao(rs.getString("funcao"));
                 funcionario.setCrmCrf(rs.getString("num_registro"));
+                funcionario.setTelefone(rs.getString("telefone"));
                 funcionario.setAdministrador(rs.getBoolean("administrador"));
                 return funcionario;
             }
@@ -48,8 +49,8 @@ public class FuncionarioRepository {
     }
     
     public void salvar(Funcionario funcionario) {
-        String sql = "INSERT INTO funcionario (cpf, nome, email, senha, data_nasc, genero, funcao, num_registro, administrador) " +
-                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO funcionario (cpf, nome, email, senha, data_nasc, genero, funcao, num_registro, telefone, administrador) " +
+                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -62,7 +63,8 @@ public class FuncionarioRepository {
             stmt.setString(6, funcionario.getGenero());
             stmt.setString(7, funcionario.getFuncao());
             stmt.setString(8, funcionario.getCrmCrf()); 
-            stmt.setBoolean(9, funcionario.isAdministrador());
+            stmt.setString(9, funcionario.getTelefone());
+            stmt.setBoolean(10, funcionario.isAdministrador());
 
             stmt.executeUpdate();
 

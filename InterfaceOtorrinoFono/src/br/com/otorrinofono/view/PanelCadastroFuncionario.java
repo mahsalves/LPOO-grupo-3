@@ -123,6 +123,7 @@ public class PanelCadastroFuncionario extends JPanel {
 		            funcionario.setSenha(String.valueOf(passwordField_SenhaFunc.getPassword()));
 		            funcionario.setGenero((String) comboBox_GeneroFunc.getSelectedItem());
 		            funcionario.setFuncao((String) comboBox_FuncaoFunc.getSelectedItem());
+		            funcionario.setTelefone(textFieldTelefone.getText());
 		            funcionario.setCrmCrf(textField_CRMCRFaFunc.getText());
 		            funcionario.setAdministrador(false);
 		            try {
@@ -171,9 +172,9 @@ public class PanelCadastroFuncionario extends JPanel {
 		
 		textFieldTelefone = new JTextField();
 		textFieldTelefone.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldTelefone.setColumns(10);
 		textFieldTelefone.setBounds(180, 303, 234, 19);
 		panel.add(textFieldTelefone);
-		textFieldTelefone.setColumns(10);
 		
 		textField_EmailFunc = new JTextField();
 		textField_EmailFunc.setFont(new Font("Tahoma", Font.PLAIN, 14));

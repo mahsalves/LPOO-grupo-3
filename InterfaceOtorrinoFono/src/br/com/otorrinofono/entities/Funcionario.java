@@ -12,14 +12,15 @@ public class Funcionario {
     private String genero;
     private String funcao;
     private String crmCrf;
+    private String telefone;
     private boolean administrador;
 
     public Funcionario() {
     	this.id = 0;
     }
 
-    public Funcionario(String cpf, String nome, String email, String senha, LocalDate dataNascimento, String genero, String funcao, String crmCrf, boolean administrador) {
-    	this.id = id;
+    public Funcionario(String cpf, String nome, String email, String senha, LocalDate dataNascimento, String genero, String funcao, String crmCrf, String telefone, boolean administrador) {
+    	//this.id = id;
     	this.cpf = cpf;
         this.nome = nome;
         this.email = email;
@@ -28,6 +29,7 @@ public class Funcionario {
         this.genero = genero;
         this.funcao = funcao;
         this.crmCrf = crmCrf;
+        this.telefone = telefone;
         this.administrador = administrador;
         
     }
@@ -57,6 +59,9 @@ public class Funcionario {
 
     public String getCrmCrf() { return crmCrf; }
     public void setCrmCrf(String crmCrf) { this.crmCrf = crmCrf; }
+    
+    public String getTelefone() { return telefone; }
+    public void setTelefone(String telefone) { this.telefone = telefone; }
 
     public boolean isAdministrador() { return administrador; }
     public void setAdministrador(boolean administrador) { this.administrador = administrador; }
