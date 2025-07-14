@@ -5,13 +5,11 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.text.SimpleDateFormat;
 
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JComboBox;
 import java.awt.event.MouseAdapter;

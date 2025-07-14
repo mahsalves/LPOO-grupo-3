@@ -56,7 +56,7 @@ public class PacienteController {
         }
 
         if (paciente.getCep() != null && !paciente.getCep().trim().isEmpty()) {
-            // Simples validação de CEP: apenas dígitos e tamanho 8 (sem hífen)
+            
             String cepLimpo = paciente.getCep().replaceAll("\\D", "");
             if (cepLimpo.length() != 8) {
                 throw new BusinessException("CEP inválido. Deve conter 8 dígitos.");
@@ -74,7 +74,67 @@ public class PacienteController {
         }
     }
 
-public List<Paciente> listarPacientes() throws SystemException {
+
+    public void atualizarPaciente(Paciente paciente) throws BusinessException, SystemException {
+        if (paciente.getCpf() == null || paciente.getCpf().trim().isEmpty()) {
+            throw new BusinessException("CPF é obrigatório para atualização.");
+        }
+
+        if (!validarCpf(paciente.getCpf())) {
+            throw new BusinessException("CPF inválido.");
+        }
+
+        if (!repository.existePorCpf(paciente.getCpf())) {
+            throw new BusinessException("Paciente não encontrado para atualização.");
+        }
+
+        if (paciente.getNome() == null || paciente.getNome().trim().isEmpty()) {
+            throw new BusinessException("O nome completo é obrigatório.");
+        }
+
+        if (paciente.getDataNascimento() == null) {
+            throw new BusinessException("A data de nascimento é obrigatória.");
+        }
+
+        if (paciente.getGenero() == null || paciente.getGenero().trim().isEmpty()) {
+            throw new BusinessException("O gênero é obrigatório.");
+        }
+
+        if (paciente.getEstado() == null || paciente.getEstado().trim().isEmpty()) {
+            throw new BusinessException("O estado é obrigatório.");
+        }
+
+        if (paciente.getNumeroProntuario() == null || paciente.getNumeroProntuario().trim().isEmpty()) {
+            throw new BusinessException("O número de prontuário é obrigatório.");
+        }
+
+        if (paciente.getEmail() != null && !paciente.getEmail().trim().isEmpty()) {
+            if (!validarEmail(paciente.getEmail())) {
+                throw new BusinessException("E-mail inválido.");
+            }
+        }
+
+        if (paciente.getTelefone() != null && !paciente.getTelefone().trim().isEmpty()) {
+            if (!validarTelefone(paciente.getTelefone())) {
+                throw new BusinessException("Telefone inválido.");
+            }
+        }
+
+        if (paciente.getCep() != null && !paciente.getCep().trim().isEmpty()) {
+            String cepLimpo = paciente.getCep().replaceAll("\\D", "");
+            if (cepLimpo.length() != 8) {
+                throw new BusinessException("CEP inválido. Deve conter 8 dígitos.");
+            }
+        }
+
+        try {
+            repository.atualizar(paciente);
+        } catch (Exception e) {
+            throw new SystemException("Erro ao atualizar paciente: " + e.getMessage(), e);
+        }
+    }
+    
+    public List<Paciente> listarPacientes() throws SystemException {
     try {
         return repository.listarTodos();
     } catch (Exception e) {
