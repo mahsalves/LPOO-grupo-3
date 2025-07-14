@@ -24,7 +24,9 @@ public class PanelCadastroPaciente extends JPanel {
 	private JTextField textFieldEmail;
 	private JTextField textFieldCidade;
 	private JTextField textFieldEndereco;
-	private JTextField textField;
+	private JTextField textFieldProntuario;
+	private JComboBox<String> comboBoxGenero;
+    private JComboBox<String> comboBoxEstado;
 	
 	private JPanel painelAnterior;
 
@@ -44,62 +46,62 @@ public class PanelCadastroPaciente extends JPanel {
 		JLabel labelTituloCadastro = new JLabel("Cadastrar Paciente");
 		labelTituloCadastro.setHorizontalAlignment(SwingConstants.CENTER);
 		labelTituloCadastro.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		labelTituloCadastro.setBounds(275, 11, 200, 18);
+		labelTituloCadastro.setBounds(275, 11, 200, 22);
 		panelInternoCadastroP.add(labelTituloCadastro);
 		
 		JLabel labelNome = new JLabel("Nome Completo");
 		labelNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelNome.setBounds(40, 40, 114, 14);
+		labelNome.setBounds(40, 40, 114, 18);
 		panelInternoCadastroP.add(labelNome);
 		
 		JLabel labelDataNasc = new JLabel("Data de nascimento");
 		labelDataNasc.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelDataNasc.setBounds(40, 70, 131, 14);
+		labelDataNasc.setBounds(40, 70, 131, 18);
 		panelInternoCadastroP.add(labelDataNasc);
 		
 		JLabel labelCpf = new JLabel("CPF");
 		labelCpf.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelCpf.setBounds(275, 70, 29, 14);
+		labelCpf.setBounds(275, 70, 29, 18);
 		panelInternoCadastroP.add(labelCpf);
 		
 		JLabel labelGenero = new JLabel("Gênero");
 		labelGenero.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelGenero.setBounds(445, 70, 51, 14);
+		labelGenero.setBounds(445, 70, 51, 18);
 		panelInternoCadastroP.add(labelGenero);
 		
 		JLabel labelEmail = new JLabel("E-mail");
 		labelEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelEmail.setBounds(40, 100, 44, 14);
+		labelEmail.setBounds(40, 100, 44, 18);
 		panelInternoCadastroP.add(labelEmail);
 		
 		JLabel labelTelefone = new JLabel("Telefone");
 		labelTelefone.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelTelefone.setBounds(40, 130, 56, 14);
+		labelTelefone.setBounds(40, 130, 56, 18);
 		panelInternoCadastroP.add(labelTelefone);
 		
 		JLabel labelEndereco = new JLabel("Endereço");
 		labelEndereco.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelEndereco.setBounds(40, 190, 66, 14);
+		labelEndereco.setBounds(40, 190, 66, 18);
 		panelInternoCadastroP.add(labelEndereco);
 		
 		JLabel labelCidade = new JLabel("Cidade");
 		labelCidade.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelCidade.setBounds(40, 160, 50, 14);
+		labelCidade.setBounds(40, 160, 50, 18);
 		panelInternoCadastroP.add(labelCidade);
 		
 		JLabel labelEstado = new JLabel("Estado");
 		labelEstado.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelEstado.setBounds(375, 160, 47, 14);
+		labelEstado.setBounds(375, 160, 47, 18);
 		panelInternoCadastroP.add(labelEstado);
 		
 		JLabel labelCep = new JLabel("CEP");
 		labelCep.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelCep.setBounds(375, 190, 29, 14);
+		labelCep.setBounds(375, 190, 29, 18);
 		panelInternoCadastroP.add(labelCep);
 		
 		JLabel labelProntuario = new JLabel("Número de prontuário");
 		labelProntuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelProntuario.setBounds(40, 240, 144, 14);
+		labelProntuario.setBounds(40, 240, 144, 18);
 		panelInternoCadastroP.add(labelProntuario);
 		
 		JButton botaoCadastrar = new JButton("Cadastrar");
@@ -123,9 +125,13 @@ public class PanelCadastroPaciente extends JPanel {
 		formattedTextFieldCpf.setBounds(314, 67, 118, 20);
 		panelInternoCadastroP.add(formattedTextFieldCpf);
 		
-		JComboBox comboBoxGenero = new JComboBox();
+		comboBoxGenero = new JComboBox<>();
 		comboBoxGenero.setBounds(506, 68, 102, 22);
 		panelInternoCadastroP.add(comboBoxGenero);
+		comboBoxGenero.addItem("Masculino");
+		comboBoxGenero.addItem("Feminino");
+		comboBoxGenero.addItem("Transgênero");
+		comboBoxGenero.addItem("Outro");
 		
 		textFieldEmail = new JTextField();
 		textFieldEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -155,15 +161,43 @@ public class PanelCadastroPaciente extends JPanel {
 		formattedTextFieldCep.setBounds(445, 189, 76, 20);
 		panelInternoCadastroP.add(formattedTextFieldCep);
 		
-		JComboBox comboBoxEstado = new JComboBox();
+		comboBoxEstado = new JComboBox<>();
 		comboBoxEstado.setBounds(445, 158, 74, 22);
 		panelInternoCadastroP.add(comboBoxEstado);
+		comboBoxEstado.addItem("AC");
+		comboBoxEstado.addItem("AL");
+		comboBoxEstado.addItem("AP");
+		comboBoxEstado.addItem("AM");
+		comboBoxEstado.addItem("BA");
+		comboBoxEstado.addItem("CE");
+		comboBoxEstado.addItem("DF");
+		comboBoxEstado.addItem("ES");
+		comboBoxEstado.addItem("GO");
+		comboBoxEstado.addItem("MA");
+		comboBoxEstado.addItem("MT");
+		comboBoxEstado.addItem("MS");
+		comboBoxEstado.addItem("MG");
+		comboBoxEstado.addItem("PA");
+		comboBoxEstado.addItem("PB");
+		comboBoxEstado.addItem("PR");
+		comboBoxEstado.addItem("PE");
+		comboBoxEstado.addItem("PI");
+		comboBoxEstado.addItem("RJ");
+		comboBoxEstado.addItem("RN");
+		comboBoxEstado.addItem("RS");
+		comboBoxEstado.addItem("RO");
+		comboBoxEstado.addItem("RR");
+		comboBoxEstado.addItem("SC");
+		comboBoxEstado.addItem("SP");
+		comboBoxEstado.addItem("SE");
+		comboBoxEstado.addItem("TO");
+
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textField.setColumns(10);
-		textField.setBounds(190, 236, 174, 20);
-		panelInternoCadastroP.add(textField);
+		textFieldProntuario = new JTextField();
+		textFieldProntuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldProntuario.setColumns(10);
+		textFieldProntuario.setBounds(190, 236, 174, 20);
+		panelInternoCadastroP.add(textFieldProntuario);
 		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
@@ -184,6 +218,20 @@ public class PanelCadastroPaciente extends JPanel {
 		panelInternoCadastroP.add(btnVoltar);
 	}
 		
+		// Os formatted tão me dando trabalho aqui, seria o caso de trocar por textfield comum?
+		public void limparCampos() {
+			textFieldNome.setText("");
+			formattedTextFieldCpf.setText("");
+			textFieldEmail.setText("");
+			textField_DataNascFunc.setText("");
+			textFieldProntuario.setText("");
+			textFieldTelefone.setText("");
+	    
+			comboBoxGenero.setSelectedIndex(0);
+			comboBoxEstado.setSelectedIndex(0);
+		}
+	
+	
 		public JPanel getPainelAnterior() {
 			return painelAnterior;
 		}

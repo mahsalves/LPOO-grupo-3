@@ -32,10 +32,10 @@ public class FuncionarioRepository {
                 funcionario.setNome(rs.getString("nome"));
                 funcionario.setEmail(rs.getString("email"));
                 funcionario.setSenha(rs.getString("senha"));
-                funcionario.setDataNasc(rs.getString("data_nasc"));
+                funcionario.setDataNascimento(rs.getDate("data_nasc").toLocalDate());
                 funcionario.setGenero(rs.getString("genero"));
                 funcionario.setFuncao(rs.getString("funcao"));
-                funcionario.setNumRegistro(rs.getString("num_registro"));
+                funcionario.setCrmCrf(rs.getString("num_registro"));
                 funcionario.setAdministrador(rs.getBoolean("administrador"));
                 return funcionario;
             }
@@ -44,6 +44,47 @@ public class FuncionarioRepository {
 
         } catch (Exception e) {
             throw new SystemException("Erro ao autenticar funcionário", e);
+        }
+    }
+    
+    public void salvar(Funcionario funcionario) {
+        String sql = "INSERT INTO funcionario (cpf, nome, email, senha, data_nasc, genero, funcao, num_registro, administrador) " +
+                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, funcionario.getCpf());
+            stmt.setString(2, funcionario.getNome());
+            stmt.setString(3, funcionario.getEmail());
+            stmt.setString(4, funcionario.getSenha());
+            stmt.setDate(5, java.sql.Date.valueOf(funcionario.getDataNascimento()));
+            stmt.setString(6, funcionario.getGenero());
+            stmt.setString(7, funcionario.getFuncao());
+            stmt.setString(8, funcionario.getCrmCrf()); 
+            stmt.setBoolean(9, funcionario.isAdministrador());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new SystemException("Erro ao salvar funcionário", e);
+        }
+    }
+    
+    public boolean existsCpf(String cpf) {
+        String sql = "SELECT COUNT(*) FROM funcionario WHERE cpf = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, cpf);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+            return false;
+        } catch (SQLException e) {
+            throw new SystemException("Erro ao verificar CPF", e);
         }
     }
 }

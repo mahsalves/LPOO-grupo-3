@@ -6,7 +6,6 @@ import br.com.otorrinofono.exception.BusinessException;
 
 public class UserController {
 	public void registerUser(String login, String password, String passwordConnfirmation) {
-		// Validacoes
 		
 		if (login.isBlank()) {
 			throw new BusinessException("O login não pode ser vazio");
@@ -32,14 +31,14 @@ public class UserController {
 		
 		Repository repository = new MySQLRepository();
 		
-		// checar se ja existe usuario com o mesmo login
+		
 		boolean exists = repository.existsUser(login);
 		
 		if (exists) {
 			throw new BusinessException("Já existe um usuário com esse login");
 		}
 		
-		// chamar a camada de dados para persistir os dados
+		
 		repository.insertUser(user);
 	}
 	

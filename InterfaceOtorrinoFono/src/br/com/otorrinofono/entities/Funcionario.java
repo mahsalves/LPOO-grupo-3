@@ -1,30 +1,38 @@
 package br.com.otorrinofono.entities;
 
+import java.time.LocalDate;
+
 public class Funcionario {
+	private int id;
 	private String cpf;
     private String nome;
     private String email;
     private String senha;
-    private String dataNasc;
+    private LocalDate dataNascimento;
     private String genero;
     private String funcao;
-    private String numRegistro;
+    private String crmCrf;
     private boolean administrador;
 
-    public Funcionario() {}
+    public Funcionario() {
+    	this.id = 0;
+    }
 
-    public Funcionario(String cpf, String nome, String email, String senha, String dataNasc, String genero, String funcao, String numRegistro, boolean administrador) {
-        this.cpf = cpf;
+    public Funcionario(String cpf, String nome, String email, String senha, LocalDate dataNascimento, String genero, String funcao, String crmCrf, boolean administrador) {
+    	this.id = id;
+    	this.cpf = cpf;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.dataNasc = dataNasc;
+        this.dataNascimento = dataNascimento;
         this.genero = genero;
         this.funcao = funcao;
-        this.numRegistro = numRegistro;
+        this.crmCrf = crmCrf;
         this.administrador = administrador;
+        
     }
-
+    
+    
     
     public String getCpf() { return cpf; }
     public void setCpf(String cpf) { this.cpf = cpf; }
@@ -38,8 +46,8 @@ public class Funcionario {
     public String getSenha() { return senha; }
     public void setSenha(String senha) { this.senha = senha; }
 
-    public String getDataNasc() { return dataNasc; }
-    public void setDataNasc(String dataNasc) { this.dataNasc = dataNasc; }
+    public LocalDate getDataNascimento() { return dataNascimento; }
+    public void setDataNascimento(LocalDate dataNascimento) { this.dataNascimento = dataNascimento; }
 
     public String getGenero() { return genero; }
     public void setGenero(String genero) { this.genero = genero; }
@@ -47,9 +55,14 @@ public class Funcionario {
     public String getFuncao() { return funcao; }
     public void setFuncao(String funcao) { this.funcao = funcao; }
 
-    public String getNumRegistro() { return numRegistro; }
-    public void setNumRegistro(String numRegistro) { this.numRegistro = numRegistro; }
+    public String getCrmCrf() { return crmCrf; }
+    public void setCrmCrf(String crmCrf) { this.crmCrf = crmCrf; }
 
     public boolean isAdministrador() { return administrador; }
     public void setAdministrador(boolean administrador) { this.administrador = administrador; }
+    
+    @Override
+    public String toString() {
+        return "Funcionario [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", crmCrf=" + crmCrf + "]";
+    }
 }

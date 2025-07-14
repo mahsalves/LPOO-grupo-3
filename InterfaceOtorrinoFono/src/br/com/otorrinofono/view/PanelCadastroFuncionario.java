@@ -19,6 +19,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 
+import br.com.otorrinofono.entities.Funcionario;
+import br.com.otorrinofono.business.FuncionarioController;
+import br.com.otorrinofono.exception.BusinessException;
+import br.com.otorrinofono.exception.SystemException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class PanelCadastroFuncionario extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -30,7 +38,8 @@ public class PanelCadastroFuncionario extends JPanel {
 	private JTextField textField_CPFFunc;
 	private JTextField textField_DataNascFunc;
 	private JTextField textField_NomeCompletoFunc;
-	private String origem;
+	private JComboBox<String> comboBox_GeneroFunc;
+    private JComboBox<String> comboBox_FuncaoFunc;
 
 	private JPanel painelAnterior;
 	
@@ -106,22 +115,45 @@ public class PanelCadastroFuncionario extends JPanel {
 		JButton botaoCadastrarFuncionario = new JButton("Cadastrar");
 		botaoCadastrarFuncionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String login = textField_NomeCompletoFunc.getText();
-				String password = String.valueOf(passwordField_SenhaFunc.getPassword());
-				String confirmationPassword = String.valueOf(passwordField_ConfirmacaoSenha.getPassword());
-				
-				JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(PanelCadastroFuncionario.this);
-				
 				try {
-					UserController controller = new UserController();
-					controller.registerUser(login, password, confirmationPassword);
-					JOptionPane.showMessageDialog(parentFrame, "Sucesso ao cadastrar usuário", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-				} catch (BusinessException be) {
-					JOptionPane.showMessageDialog(parentFrame, se.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-				} catch (SystemException se) {
-					JOptionPane.showMessageDialog(PanelCadastroFuncionario.this.frame, se.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-				}
-			}
+		            Funcionario funcionario = new Funcionario();
+		            funcionario.setNome(textField_NomeCompletoFunc.getText());
+		            funcionario.setCpf(textField_CPFFunc.getText());
+		            funcionario.setEmail(textField_EmailFunc.getText());
+		            funcionario.setSenha(String.valueOf(passwordField_SenhaFunc.getPassword()));
+		            funcionario.setGenero((String) comboBox_GeneroFunc.getSelectedItem());
+		            funcionario.setFuncao((String) comboBox_FuncaoFunc.getSelectedItem());
+		            funcionario.setCrmCrf(textField_CRMCRFaFunc.getText());
+		            funcionario.setAdministrador(false);
+		            try {
+		                String dataStr = textField_DataNascFunc.getText();
+		                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		                LocalDate dataNasc = LocalDate.parse(dataStr, formatter);
+		                funcionario.setDataNascimento(dataNasc);
+		            } catch (DateTimeParseException ex) {
+		                JOptionPane.showMessageDialog(PanelCadastroFuncionario.this, "Data de nascimento inválida. Use o formato dd/MM/yyyy.", "Erro", JOptionPane.ERROR_MESSAGE);
+		                return;
+		            }
+		            
+		    
+		            String confirmacaoSenha = String.valueOf(passwordField_ConfirmacaoSenha.getPassword());
+		            
+		            
+		            FuncionarioController controller = new FuncionarioController();
+		            controller.cadastrarFuncionario(funcionario, confirmacaoSenha);
+		            
+		            
+		            JOptionPane.showMessageDialog(PanelCadastroFuncionario.this, "Funcionário cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+		            limparCampos();
+		            
+		        } catch (BusinessException be) {
+		            JOptionPane.showMessageDialog(PanelCadastroFuncionario.this, be.getMessage(), "Erro de validação", JOptionPane.ERROR_MESSAGE);
+		        } catch (SystemException se) {
+		            JOptionPane.showMessageDialog(PanelCadastroFuncionario.this, se.getMessage(), "Erro no sistema", JOptionPane.ERROR_MESSAGE);
+		        } catch (Exception ex) {
+		            JOptionPane.showMessageDialog(PanelCadastroFuncionario.this, "Erro inesperado: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+		        }
+		    }
 		});
 		botaoCadastrarFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		botaoCadastrarFuncionario.setBounds(581, 405, 125, 25);
@@ -173,22 +205,29 @@ public class PanelCadastroFuncionario extends JPanel {
 		textField_NomeCompletoFunc.setBounds(180, 78, 234, 19);
 		panel.add(textField_NomeCompletoFunc);
 		
-		JComboBox comboBox_GeneroFunc = new JComboBox();
+		comboBox_GeneroFunc = new JComboBox<>();
 		comboBox_GeneroFunc.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		comboBox_GeneroFunc.setBounds(180, 170, 234, 21);
 		panel.add(comboBox_GeneroFunc);
+		comboBox_GeneroFunc.addItem("Masculino");
+		comboBox_GeneroFunc.addItem("Feminino");
+		comboBox_GeneroFunc.addItem("Transgênero");
+		comboBox_GeneroFunc.addItem("Outro");
 		
-		JComboBox comboBox_FuncaoFunc = new JComboBox();
+		comboBox_FuncaoFunc = new JComboBox<>();
 		comboBox_FuncaoFunc.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		comboBox_FuncaoFunc.setBounds(180, 206, 234, 21);
 		panel.add(comboBox_FuncaoFunc);
+		comboBox_FuncaoFunc.addItem("Fonoaudiólogo(a)");
+		comboBox_FuncaoFunc.addItem("Otorrinolaringologista");
+		comboBox_FuncaoFunc.addItem("Estagiário(a)");
+		
 		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				PanelPaginaFuncionario painelPaginaFuncionario = new PanelPaginaFuncionario();
 			    
 			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnVoltar);
 
@@ -201,6 +240,23 @@ public class PanelCadastroFuncionario extends JPanel {
 		btnVoltar.setBounds(11, 408, 125, 25);
 		panel.add(btnVoltar);
 	}
+	
+	
+	public void limparCampos() {
+	    textField_NomeCompletoFunc.setText("");
+	    textField_CPFFunc.setText("");
+	    textField_EmailFunc.setText("");
+	    textField_DataNascFunc.setText("");
+	    textField_CRMCRFaFunc.setText("");
+	    textFieldTelefone.setText("");
+	    
+	    passwordField_SenhaFunc.setText("");
+	    passwordField_ConfirmacaoSenha.setText("");
+	    
+	    comboBox_GeneroFunc.setSelectedIndex(0);
+	    comboBox_FuncaoFunc.setSelectedIndex(0);
+	}
+	
 	
 	public JPanel getPainelAnterior() {
 		return painelAnterior;
