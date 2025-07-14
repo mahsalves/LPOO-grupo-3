@@ -43,12 +43,7 @@ public class ConsultaController {
 	        } 
 	    }
 
-	    /**
-	     * Busca uma consulta pelo ID.
-	     * @param id O ID da consulta a ser buscada.
-	     * @return O objeto Consulta encontrado ou null.
-	     * @throws SystemException Se ocorrer um erro no sistema (BD).
-	     */
+	  
 	    public Consulta buscarConsultaPorId(int id) throws SystemException {
 	        if (id <= 0) {
 	            throw new BusinessException("ID da consulta inválido.");
@@ -70,13 +65,7 @@ public class ConsultaController {
 	        return consultaRepository.buscarConsultasPorNomeOuCpf(termoBusca);
 	    }
 
-	    /**
-	     * Deleta uma consulta pelo ID.
-	     * @param id O ID da consulta a ser deletada.
-	     * @return true se a consulta foi deletada, false caso contrário.
-	     * @throws BusinessException Se o ID for inválido.
-	     * @throws SystemException Se ocorrer um erro no sistema (BD).
-	     */
+	 
 	    public boolean deletarConsulta(int id) throws BusinessException, SystemException {
 	        if (id <= 0) {
 	            throw new BusinessException("ID da consulta inválido para exclusão.");
@@ -101,13 +90,7 @@ public class ConsultaController {
 	        }
 	    }
 
-	    /**
-	     * Lista consultas de um paciente específico.
-	     * @param pacienteId O ID do paciente.
-	     * @return Uma lista de consultas do paciente.
-	     * @throws BusinessException Se o ID do paciente for inválido.
-	     * @throws SystemException Se ocorrer um erro no sistema (BD).
-	     */
+
 	    public List<Consulta> listarConsultasPorPaciente(int pacienteId) throws BusinessException, SystemException {
 	        if (pacienteId <= 0) {
 	            throw new BusinessException("ID do paciente inválido para listar consultas.");

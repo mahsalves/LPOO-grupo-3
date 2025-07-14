@@ -16,6 +16,18 @@ import java.awt.event.MouseEvent;
 public class PanelPaginaPaciente extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private int pacienteId;
+	
+	 private JLabel labelNome;
+	 private JLabel labelCpf;
+	 private JLabel labelDataNascimento;
+	 private JLabel labelTelefone;
+	 private JLabel labelEmail;
+	 private JLabel labelGenero;
+	 private JLabel labelEndereco;
+	 private JLabel labelEstado;
+	 private JLabel labelCep;
+	 private JLabel labelProntuario;
 
 	/**
 	 * Create the panel.
@@ -130,6 +142,27 @@ public class PanelPaginaPaciente extends JPanel {
 		labelCepPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		labelCepPaciente.setBounds(147, 280, 200, 15);
 		panelInternoPagPaciente.add(labelCepPaciente);
+		
+		 public void setPacienteId(int pacienteId) {
+		        this.pacienteId = pacienteId;
+		        carregarDadosDoPaciente();
+		    }
+
+		    private void carregarDadosDoPaciente() {
+		        PacienteRepository repo = new PacienteRepository();
+		        Optional<Paciente> pacienteOptional = repo.buscarPorId(pacienteId);
+
+		        if (pacienteOptional.isPresent()) {
+		            Paciente paciente = pacienteOptional.get();
+		            labelNome.setText(paciente.getNome());
+		            labelCpf.setText(paciente.getCpf());
+		            labelDataNascimento.setText(paciente.getDataNascimento().toString());
+		            labelTelefone.setText(paciente.getTelefone());
+		        } else {
+		            JOptionPane.showMessageDialog(this, "Paciente não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
+		        }
+		    }
+	}
 		
 		JButton btnEditarCadastro = new JButton("Editar Cadastro");
 		btnEditarCadastro.addMouseListener(new MouseAdapter() {

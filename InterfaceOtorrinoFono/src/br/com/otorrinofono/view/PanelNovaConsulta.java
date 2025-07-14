@@ -13,6 +13,19 @@ import javax.swing.JFrame;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+import javax.swing.JFileChooser;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import javax.swing.JOptionPane;
+import java.time.LocalDate;
+
+import br.com.otorrinofono.entities.Consulta;
+import br.com.otorrinofono.business.ConsultaController;
+import br.com.otorrinofono.data.ConsultaRepository;
 
 public class PanelNovaConsulta extends JPanel {
 
@@ -22,6 +35,13 @@ public class PanelNovaConsulta extends JPanel {
 	private JTextField textField_diagnostico;
 	private JTextField textField_conduta;
 	private JTextField textField_observacoes;
+	private byte[] anexoExameBytes = null;
+	
+	private int idPacienteAtual;
+
+	public PanelNovaConsulta(int idPaciente) {
+	    this.idPacienteAtual = idPaciente;
+	    }
 
 	/**
 	 * Create the panel.
@@ -98,11 +118,66 @@ public class PanelNovaConsulta extends JPanel {
 		panel.add(textField_observacoes);
 		
 		JButton BotaoRegistrarConsulta = new JButton("Registrar");
+		BotaoRegistrarConsulta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+		            Consulta consulta = new Consulta();
+
+		            consulta.setAnamnese(textField_anamnese.getText());
+		            consulta.setAvaliacaoVocal(textfield_avaliacaovocal.getText());
+		            consulta.setDiagnostico(textField_diagnostico.getText());
+		            consulta.setConduta(textField_conduta.getText());
+		            consulta.setObservacoes(textField_observacoes.getText());
+		            consulta.setAnexarExames(anexoExameBytes);
+
+		            consulta.setDataConsulta(LocalDate.now());
+
+		            // Aqui falta definir o pacienteId para a consulta. 
+		            // Você precisa ter esse ID do paciente que está sendo atendido para associar.
+		            // Pode passar por construtor, parâmetro, variável da classe, etc.
+		            consulta.setPacienteId(idPacienteAtual);
+
+		            ConsultaRepository dao = new ConsultaRepository();
+		            dao.salvar(consulta);
+
+		            JOptionPane.showMessageDialog(PanelNovaConsulta.this, "Consulta registrada com sucesso!");
+
+		            PanelPaginaPaciente painelPaginaPaciente = new PanelPaginaPaciente();
+		            painelPaginaPaciente.setPacienteId(idPacienteAtual);
+
+		            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(PanelNovaConsulta.this);
+		            frame.getContentPane().removeAll();
+		            frame.getContentPane().add(painelPaginaPaciente);
+		            frame.revalidate();
+		            frame.repaint();
+
+		        } catch (Exception ex) {
+		            ex.printStackTrace();
+		            JOptionPane.showMessageDialog(PanelNovaConsulta.this, "Erro ao registrar consulta: " + ex.getMessage());
+		        }
+			}
+		});
 		BotaoRegistrarConsulta.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		BotaoRegistrarConsulta.setBounds(635, 430, 104, 42);
 		panel.add(BotaoRegistrarConsulta);
 		
 		JButton BotaoAnexarExamesConsulta = new JButton("Anexar exames");
+		BotaoAnexarExamesConsulta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+			    int option = fileChooser.showOpenDialog(this);
+			    if (option == JFileChooser.APPROVE_OPTION) {
+			        File file = fileChooser.getSelectedFile();
+			        try {
+			            byte[] fileContent = Files.readAllBytes(file.toPath());
+			            this.anexoExameBytes = fileContent;
+			        } catch (IOException ex) {
+			            ex.printStackTrace();
+			            JOptionPane.showMessageDialog(this, "Erro ao ler o arquivo.");
+			        }
+			    }
+			}
+		});
 		BotaoAnexarExamesConsulta.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		BotaoAnexarExamesConsulta.setBounds(495, 325, 140, 34);
 		panel.add(BotaoAnexarExamesConsulta);

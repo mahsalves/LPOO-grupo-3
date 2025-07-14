@@ -13,7 +13,7 @@ import br.com.otorrinofono.util.DatabaseConnection;
 
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.Optional;
+import java.util.Optional;
 
 public class PacienteRepository {
 	public void salvar(Paciente paciente) {
@@ -174,5 +174,39 @@ public class PacienteRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao remover paciente por CPF", e);
         }
+    }
+    
+    public Optional<Paciente> buscarPorId(int id) {
+    	String sql = "SELECT * FROM paciente WHERE id = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Paciente paciente = new Paciente();
+                paciente.setNome(rs.getString("nome"));
+                paciente.setCpf(rs.getString("cpf"));
+                paciente.setDataNascimento(rs.getDate("data_nasc").toLocalDate());
+                paciente.setTelefone(rs.getString("telefone"));
+                paciente.setTelefone(rs.getString("endereco"));
+                paciente.setTelefone(rs.getString("genero"));
+                paciente.setTelefone(rs.getString("email"));
+                paciente.setTelefone(rs.getString("cidade"));
+                paciente.setTelefone(rs.getString("estado"));
+                paciente.setTelefone(rs.getString("cep"));
+                paciente.setTelefone(rs.getString("prontuario"));
+                
+
+                return Optional.of(paciente);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return Optional.empty();
     }
 }
