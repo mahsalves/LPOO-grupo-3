@@ -134,7 +134,7 @@ public class PanelCadastroPaciente extends JPanel {
 					paciente.setNumeroProntuario(textFieldProntuario.getText());
 					
 					paciente.setGenero(comboBoxGenero.getSelectedItem() != null ? comboBoxGenero.getSelectedItem().toString() : "");
-					paciente.setEstado(comboBoxEstado.getSelectedItem() != null ? comboBoxEstado.getSelectedItem().toString() : ""); // Supondo setEstado em Paciente
+					paciente.setEstado(comboBoxEstado.getSelectedItem() != null ? comboBoxEstado.getSelectedItem().toString() : "");
 
 	
 					String dataNascTexto = textFieldDataNascimento.getText();
@@ -150,10 +150,17 @@ public class PanelCadastroPaciente extends JPanel {
 					}
 
 					PacienteController controller = new PacienteController();
-					controller.cadastrarPaciente(paciente); // Supondo um método cadastrarPaciente que recebe Paciente
+					controller.cadastrarPaciente(paciente);
 
 					JOptionPane.showMessageDialog(PanelCadastroPaciente.this, "Paciente cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 					limparCampos();
+					
+					JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(botaoCadastrar);
+			        PanelPaginaPaciente painelPerfil = new PanelPaginaPaciente();
+			        frame.getContentPane().removeAll();
+			        frame.getContentPane().add(painelPerfil);
+			        frame.revalidate();
+			        frame.repaint();
 
 				} catch (BusinessException be) {
 					JOptionPane.showMessageDialog(PanelCadastroPaciente.this, be.getMessage(), "Erro de validação", JOptionPane.ERROR_MESSAGE);

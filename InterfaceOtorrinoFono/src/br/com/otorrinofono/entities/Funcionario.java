@@ -20,7 +20,7 @@ public class Funcionario {
     }
 
     public Funcionario(String cpf, String nome, String email, String senha, LocalDate dataNascimento, String genero, String funcao, String crmCrf, String telefone, boolean administrador) {
-    	//this.id = id;
+    	this.id = id;
     	this.cpf = cpf;
         this.nome = nome;
         this.email = email;
