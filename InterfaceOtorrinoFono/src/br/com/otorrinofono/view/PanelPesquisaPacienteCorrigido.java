@@ -3,28 +3,24 @@ package br.com.otorrinofono.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import java.awt.LayoutManager;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.*;
+import javax.swing.border.TitledBorder;
+
+import br.com.otorrinofono.business.PacienteController;
+import br.com.otorrinofono.entities.Paciente;
+import br.com.otorrinofono.exception.SystemException;
+
+import java.util.List;
 
 public class PanelPesquisaPacienteCorrigido extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
+	private JTextArea areaInformacoes;
+    private Paciente pacienteSelecionado = null;
 
 	/**
 	 * Create the panel.
@@ -45,9 +41,10 @@ public class PanelPesquisaPacienteCorrigido extends JPanel {
 		lblPesquisarPaciente.setBounds(287, 10, 170, 22);
 		panel.add(lblPesquisarPaciente);
 		
-		JPanel painelBusca = new JPanel((LayoutManager) null);
+		JPanel painelBusca = new JPanel();
+		painelBusca.setLayout(null);
 		painelBusca.setBorder(BorderFactory.createTitledBorder("Buscar"));
-		painelBusca.setBounds(0, 42, 756, 46);
+		painelBusca.setBounds(10, 42, 606, 46);
 		panel.add(painelBusca);
 		painelBusca.setLayout(new BorderLayout(5, 5));
 		
@@ -61,7 +58,7 @@ public class PanelPesquisaPacienteCorrigido extends JPanel {
 		areaInformacoes.setLineWrap(true);
 		areaInformacoes.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		areaInformacoes.setEditable(false);
-		areaInformacoes.setBorder(BorderFactory.createTitledBorder("Informações do Paciente"));
+		areaInformacoes.setBorder(BorderFactory.createTitledBorder("Informações"));
 		areaInformacoes.setBounds(10, 98, 736, 328);
 		panel.add(areaInformacoes);
 		
@@ -83,6 +80,49 @@ public class PanelPesquisaPacienteCorrigido extends JPanel {
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnVoltar.setBounds(10, 451, 105, 21);
 		panel.add(btnVoltar);
-
+		
+		JButton btnProcurar = new JButton("Procurar");
+		btnProcurar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnProcurar.setBounds(626, 56, 105, 32);
+		panel.add(btnProcurar);
+		btnProcurar.addActionListener(e -> procurarPaciente());
+		
+		JButton btnVisualizarPaciente = new JButton("Visualizar paciente");
+		btnVisualizarPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnVisualizarPaciente.setBounds(537, 436, 209, 36);
+		panel.add(btnVisualizarPaciente);
 	}
+		
+		private void procurarPaciente() {
+	        String termo = textField.getText().trim().toLowerCase();
+	        areaInformacoes.setText("");
+	        pacienteSelecionado = null;
+
+	        try {
+	            PacienteController controller = new PacienteController();
+	            List<Paciente> pacientes = controller.listarPacientes();
+
+	            for (Paciente p : pacientes) {
+	                if (p.getNome().toLowerCase().contains(termo) || 
+	                    p.getNumeroProntuario().toLowerCase().contains(termo)) {
+	                    
+	                    pacienteSelecionado = p; // pega o primeiro que encontrar
+	                    areaInformacoes.setText(formatarPaciente(p));
+	                    return;
+	                }
+	            }
+
+	            areaInformacoes.setText("Nenhum paciente encontrado.");
+	        } catch (SystemException e) {
+	            JOptionPane.showMessageDialog(null, "Erro ao buscar pacientes: " + e.getMessage());
+	        }
+		}
+	        private String formatarPaciente(Paciente p) {
+	            return String.format(
+	                "Nome: %s\nData de Nascimento: %s\nCPF: %s\nGênero: %s\nEmail: %s\nTelefone: %s\nEndereço: %s\nCEP: %s\nEstado: %s\nProntuário: %s",
+	                p.getNome(), p.getDataNascimento(), p.getCpf(), p.getGenero(), p.getEmail(),
+	                p.getTelefone(), p.getEndereco(), p.getCep(), p.getEstado(), p.getNumeroProntuario()
+	            );
+	        }
+
 }

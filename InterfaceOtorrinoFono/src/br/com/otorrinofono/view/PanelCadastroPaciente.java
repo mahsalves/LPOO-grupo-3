@@ -16,6 +16,18 @@ import javax.swing.JFrame;
 import javax.swing.JComboBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import br.com.otorrinofono.entities.Paciente;
+import br.com.otorrinofono.business.PacienteController;
+import br.com.otorrinofono.exception.BusinessException;
+import br.com.otorrinofono.exception.SystemException;
 
 public class PanelCadastroPaciente extends JPanel {
 
@@ -29,6 +41,10 @@ public class PanelCadastroPaciente extends JPanel {
     private JComboBox<String> comboBoxEstado;
 	
 	private JPanel painelAnterior;
+	private JTextField textFieldTelefone;
+	private JTextField textFieldCEP;
+	private JTextField textFieldCpf;
+	private JTextField textFieldDataNascimento;
 
 	/**
 	 * Create the panel.
@@ -46,65 +62,112 @@ public class PanelCadastroPaciente extends JPanel {
 		JLabel labelTituloCadastro = new JLabel("Cadastrar Paciente");
 		labelTituloCadastro.setHorizontalAlignment(SwingConstants.CENTER);
 		labelTituloCadastro.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		labelTituloCadastro.setBounds(275, 11, 200, 22);
+		labelTituloCadastro.setBounds(275, 11, 200, 26);
 		panelInternoCadastroP.add(labelTituloCadastro);
 		
 		JLabel labelNome = new JLabel("Nome Completo");
 		labelNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelNome.setBounds(40, 40, 114, 18);
+		labelNome.setBounds(40, 40, 114, 22);
 		panelInternoCadastroP.add(labelNome);
 		
 		JLabel labelDataNasc = new JLabel("Data de nascimento");
 		labelDataNasc.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelDataNasc.setBounds(40, 70, 131, 18);
+		labelDataNasc.setBounds(40, 70, 131, 22);
 		panelInternoCadastroP.add(labelDataNasc);
 		
 		JLabel labelCpf = new JLabel("CPF");
 		labelCpf.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelCpf.setBounds(275, 70, 29, 18);
+		labelCpf.setBounds(40, 228, 29, 22);
 		panelInternoCadastroP.add(labelCpf);
 		
 		JLabel labelGenero = new JLabel("Gênero");
 		labelGenero.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelGenero.setBounds(445, 70, 51, 18);
+		labelGenero.setBounds(375, 130, 51, 22);
 		panelInternoCadastroP.add(labelGenero);
 		
 		JLabel labelEmail = new JLabel("E-mail");
 		labelEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelEmail.setBounds(40, 100, 44, 18);
+		labelEmail.setBounds(40, 100, 44, 22);
 		panelInternoCadastroP.add(labelEmail);
 		
 		JLabel labelTelefone = new JLabel("Telefone");
 		labelTelefone.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelTelefone.setBounds(40, 130, 56, 18);
+		labelTelefone.setBounds(40, 130, 56, 22);
 		panelInternoCadastroP.add(labelTelefone);
 		
 		JLabel labelEndereco = new JLabel("Endereço");
 		labelEndereco.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelEndereco.setBounds(40, 190, 66, 18);
+		labelEndereco.setBounds(40, 190, 66, 22);
 		panelInternoCadastroP.add(labelEndereco);
 		
 		JLabel labelCidade = new JLabel("Cidade");
 		labelCidade.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelCidade.setBounds(40, 160, 50, 18);
+		labelCidade.setBounds(40, 160, 50, 22);
 		panelInternoCadastroP.add(labelCidade);
 		
 		JLabel labelEstado = new JLabel("Estado");
 		labelEstado.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelEstado.setBounds(375, 160, 47, 18);
+		labelEstado.setBounds(375, 160, 47, 22);
 		panelInternoCadastroP.add(labelEstado);
 		
 		JLabel labelCep = new JLabel("CEP");
 		labelCep.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelCep.setBounds(375, 190, 29, 18);
+		labelCep.setBounds(375, 190, 29, 22);
 		panelInternoCadastroP.add(labelCep);
 		
 		JLabel labelProntuario = new JLabel("Número de prontuário");
 		labelProntuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelProntuario.setBounds(40, 240, 144, 18);
+		labelProntuario.setBounds(40, 256, 144, 22);
 		panelInternoCadastroP.add(labelProntuario);
 		
 		JButton botaoCadastrar = new JButton("Cadastrar");
+		botaoCadastrar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Paciente paciente = new Paciente();
+					paciente.setNome(textFieldNome.getText());
+					paciente.setCpf(textFieldCpf.getText());
+					paciente.setEmail(textFieldEmail.getText());
+					paciente.setTelefone(textFieldTelefone.getText());
+					paciente.setCidade(textFieldCidade.getText());
+					paciente.setEndereco(textFieldEndereco.getText());
+					paciente.setCep(textFieldCEP.getText());
+					paciente.setNumeroProntuario(textFieldProntuario.getText());
+					
+					paciente.setGenero(comboBoxGenero.getSelectedItem() != null ? comboBoxGenero.getSelectedItem().toString() : "");
+					paciente.setEstado(comboBoxEstado.getSelectedItem() != null ? comboBoxEstado.getSelectedItem().toString() : ""); // Supondo setEstado em Paciente
+
+	
+					String dataNascTexto = textFieldDataNascimento.getText();
+					if (!dataNascTexto.isEmpty()) {
+						try {
+							paciente.setDataNascimento(LocalDate.parse(dataNascTexto, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+						} catch (DateTimeParseException ex) {
+							JOptionPane.showMessageDialog(PanelCadastroPaciente.this, "Formato de Data de Nascimento inválido. Use DD/MM/YYYY.", "Erro de Validação", JOptionPane.ERROR_MESSAGE);
+							return;
+						}
+					} else {
+						paciente.setDataNascimento(null);
+					}
+
+					PacienteController controller = new PacienteController();
+					controller.cadastrarPaciente(paciente); // Supondo um método cadastrarPaciente que recebe Paciente
+
+					JOptionPane.showMessageDialog(PanelCadastroPaciente.this, "Paciente cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+					limparCampos();
+
+				} catch (BusinessException be) {
+					JOptionPane.showMessageDialog(PanelCadastroPaciente.this, be.getMessage(), "Erro de validação", JOptionPane.ERROR_MESSAGE);
+				} catch (SystemException se) {
+					JOptionPane.showMessageDialog(PanelCadastroPaciente.this, se.getMessage(), "Erro no sistema", JOptionPane.ERROR_MESSAGE);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(PanelCadastroPaciente.this, "Erro inesperado: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+					ex.printStackTrace();
+				}
+			
+			}
+		});
 		botaoCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		botaoCadastrar.setBounds(578, 454, 150, 25);
 		panelInternoCadastroP.add(botaoCadastrar);
@@ -115,18 +178,8 @@ public class PanelCadastroPaciente extends JPanel {
 		panelInternoCadastroP.add(textFieldNome);
 		textFieldNome.setColumns(10);
 		
-		JFormattedTextField formattedTextFieldDataNasc = new JFormattedTextField(new SimpleDateFormat("dd/MM/yyyy"));
-		formattedTextFieldDataNasc.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		formattedTextFieldDataNasc.setBounds(172, 67, 85, 20);
-		panelInternoCadastroP.add(formattedTextFieldDataNasc);
-		
-		JFormattedTextField formattedTextFieldCpf = new JFormattedTextField();
-		formattedTextFieldCpf.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		formattedTextFieldCpf.setBounds(314, 67, 118, 20);
-		panelInternoCadastroP.add(formattedTextFieldCpf);
-		
 		comboBoxGenero = new JComboBox<>();
-		comboBoxGenero.setBounds(506, 68, 102, 22);
+		comboBoxGenero.setBounds(445, 130, 137, 22);
 		panelInternoCadastroP.add(comboBoxGenero);
 		comboBoxGenero.addItem("Masculino");
 		comboBoxGenero.addItem("Feminino");
@@ -136,17 +189,12 @@ public class PanelCadastroPaciente extends JPanel {
 		textFieldEmail = new JTextField();
 		textFieldEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldEmail.setColumns(10);
-		textFieldEmail.setBounds(172, 95, 303, 20);
+		textFieldEmail.setBounds(172, 100, 303, 20);
 		panelInternoCadastroP.add(textFieldEmail);
-		
-		JFormattedTextField formattedTextFieldTelefone = new JFormattedTextField();
-		formattedTextFieldTelefone.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		formattedTextFieldTelefone.setBounds(172, 129, 114, 20);
-		panelInternoCadastroP.add(formattedTextFieldTelefone);
 		
 		textFieldCidade = new JTextField();
 		textFieldCidade.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldCidade.setBounds(171, 159, 194, 20);
+		textFieldCidade.setBounds(172, 159, 194, 20);
 		panelInternoCadastroP.add(textFieldCidade);
 		textFieldCidade.setColumns(10);
 		
@@ -156,13 +204,8 @@ public class PanelCadastroPaciente extends JPanel {
 		textFieldEndereco.setBounds(172, 189, 194, 20);
 		panelInternoCadastroP.add(textFieldEndereco);
 		
-		JFormattedTextField formattedTextFieldCep = new JFormattedTextField();
-		formattedTextFieldCep.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		formattedTextFieldCep.setBounds(445, 189, 76, 20);
-		panelInternoCadastroP.add(formattedTextFieldCep);
-		
 		comboBoxEstado = new JComboBox<>();
-		comboBoxEstado.setBounds(445, 158, 74, 22);
+		comboBoxEstado.setBounds(445, 158, 137, 22);
 		panelInternoCadastroP.add(comboBoxEstado);
 		comboBoxEstado.addItem("AC");
 		comboBoxEstado.addItem("AL");
@@ -196,7 +239,7 @@ public class PanelCadastroPaciente extends JPanel {
 		textFieldProntuario = new JTextField();
 		textFieldProntuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldProntuario.setColumns(10);
-		textFieldProntuario.setBounds(190, 236, 174, 20);
+		textFieldProntuario.setBounds(191, 255, 174, 20);
 		panelInternoCadastroP.add(textFieldProntuario);
 		
 		JButton btnVoltar = new JButton("Voltar");
@@ -216,16 +259,43 @@ public class PanelCadastroPaciente extends JPanel {
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnVoltar.setBounds(20, 454, 150, 25);
 		panelInternoCadastroP.add(btnVoltar);
+		
+		textFieldTelefone = new JTextField();
+		textFieldTelefone.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldTelefone.setBounds(172, 129, 194, 20);
+		panelInternoCadastroP.add(textFieldTelefone);
+		textFieldTelefone.setColumns(10);
+		
+		textFieldCEP = new JTextField();
+		textFieldCEP.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldCEP.setColumns(10);
+		textFieldCEP.setBounds(444, 192, 138, 20);
+		panelInternoCadastroP.add(textFieldCEP);
+		
+		textFieldCpf = new JTextField();
+		textFieldCpf.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldCpf.setColumns(10);
+		textFieldCpf.setBounds(172, 227, 193, 20);
+		panelInternoCadastroP.add(textFieldCpf);
+		
+		textFieldDataNascimento = new JTextField();
+		textFieldDataNascimento.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldDataNascimento.setColumns(10);
+		textFieldDataNascimento.setBounds(172, 69, 194, 20);
+		panelInternoCadastroP.add(textFieldDataNascimento);
 	}
 		
-		// Os formatted tão me dando trabalho aqui, seria o caso de trocar por textfield comum?
+	
 		public void limparCampos() {
 			textFieldNome.setText("");
-			formattedTextFieldCpf.setText("");
+			textFieldCpf.setText("");
 			textFieldEmail.setText("");
-			textField_DataNascFunc.setText("");
+			textFieldDataNascimento.setText("");
 			textFieldProntuario.setText("");
 			textFieldTelefone.setText("");
+			textFieldCEP.setText("");
+			textFieldCidade.setText("");
+			textFieldEndereco.setText("");
 	    
 			comboBoxGenero.setSelectedIndex(0);
 			comboBoxEstado.setSelectedIndex(0);
