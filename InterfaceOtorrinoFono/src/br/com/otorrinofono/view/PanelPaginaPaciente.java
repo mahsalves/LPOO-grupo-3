@@ -37,7 +37,7 @@ public class PanelPaginaPaciente extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public PanelPaginaPaciente() {
+	public PanelPaginaPaciente(Paciente paciente) {
 		setBackground(new Color(0, 128, 255));
 		setBounds(0, 0, 884, 561);
 		setLayout(null);
@@ -216,32 +216,33 @@ public class PanelPaginaPaciente extends JPanel {
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnVoltar.setBounds(499, 415, 150, 25);
 		panelInternoPagPaciente.add(btnVoltar);
+		
+		
 	}
-}
-
-public void setPacienteCpf(String cpf) {
-	this.pacienteCpf = cpf;
-	carregarDadosDoPaciente();
-}
-
-private void carregarDadosDoPaciente() {
-	PacienteRepository repo = new PacienteRepository();
-	Optional<Paciente> pacienteOptional = repo.buscarPorCpf(pacienteCpf);
-
-	if (pacienteOptional.isPresent()) {
-		Paciente paciente = pacienteOptional.get();
-		labelNomeValor.setText(paciente.getNome());
-		labelCpfValor.setText(paciente.getCpf());
-		labelDataNascimentoValor.setText(paciente.getDataNascimento().toString());
-		labelTelefoneValor.setText(paciente.getTelefone());
-		labelEmailValor.setText(paciente.getEmail());
-		labelGeneroValor.setText(paciente.getGenero());
-		labelEnderecoValor.setText(paciente.getEndereco());
-		labelEstadoValor.setText(paciente.getEstado());
-		labelCepValor.setText(paciente.getCep());
-		labelProntuarioValor.setText(paciente.getProntuario());
-	} else {
-		JOptionPane.showMessageDialog(this, "Paciente não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
+	
+	public void setPacienteCpf(String cpf) {
+		this.pacienteCpf = cpf;
+		carregarDadosDoPaciente();
 	}
-}
+
+	private void carregarDadosDoPaciente() {
+		PacienteRepository repo = new PacienteRepository();
+		Optional<Paciente> pacienteOptional = repo.buscarPorCpf(pacienteCpf);
+
+		if (pacienteOptional.isPresent()) {
+			Paciente paciente = pacienteOptional.get();
+			labelNomeValor.setText(paciente.getNome());
+			labelCpfValor.setText(paciente.getCpf());
+			labelDataNascimentoValor.setText(paciente.getDataNascimento().toString());
+			labelTelefoneValor.setText(paciente.getTelefone());
+			labelEmailValor.setText(paciente.getEmail());
+			labelGeneroValor.setText(paciente.getGenero());
+			labelEnderecoValor.setText(paciente.getEndereco());
+			labelEstadoValor.setText(paciente.getEstado());
+			labelCepValor.setText(paciente.getCep());
+			labelProntuarioValor.setText(paciente.getProntuario());
+		} else {
+			JOptionPane.showMessageDialog(this, "Paciente não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
+		}
+	}
 }
