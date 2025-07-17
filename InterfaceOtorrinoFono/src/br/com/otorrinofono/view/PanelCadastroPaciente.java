@@ -38,11 +38,17 @@ public class PanelCadastroPaciente extends JPanel {
 	private JComboBox<String> comboBoxGenero;
     private JComboBox<String> comboBoxEstado;
 	
-	private JPanel painelAnterior;
 	private JTextField textFieldTelefone;
 	private JTextField textFieldCEP;
 	private JTextField textFieldCpf;
 	private JTextField textFieldDataNascimento;
+	
+	private JPanel painelAnterior;
+
+	public PanelCadastroPaciente(JPanel painelAnterior) {
+	    this.painelAnterior = painelAnterior;
+	    setLayout(null);
+	}
 
 	/**
 	 * Create the panel.
@@ -156,7 +162,7 @@ public class PanelCadastroPaciente extends JPanel {
 					limparCampos();
 					
 					JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(botaoCadastrar);
-			        PanelPaginaPaciente painelPerfil = new PanelPaginaPaciente();
+			        PanelPaginaPaciente painelPerfil = new PanelPaginaPaciente(paciente);
 			        frame.getContentPane().removeAll();
 			        frame.getContentPane().add(painelPerfil);
 			        frame.revalidate();

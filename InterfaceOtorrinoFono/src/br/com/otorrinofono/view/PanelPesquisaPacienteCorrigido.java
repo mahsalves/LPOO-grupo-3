@@ -53,15 +53,6 @@ public class PanelPesquisaPacienteCorrigido extends JPanel {
 		textField.setForeground(Color.GRAY);
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JTextArea areaInformacoes = new JTextArea();
-		areaInformacoes.setWrapStyleWord(true);
-		areaInformacoes.setLineWrap(true);
-		areaInformacoes.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		areaInformacoes.setEditable(false);
-		areaInformacoes.setBorder(BorderFactory.createTitledBorder("Informações"));
-		areaInformacoes.setBounds(10, 98, 736, 328);
-		panel.add(areaInformacoes);
-		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -89,13 +80,20 @@ public class PanelPesquisaPacienteCorrigido extends JPanel {
 		
 		JButton btnVisualizarPaciente = new JButton("Visualizar paciente");
 		btnVisualizarPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnVisualizarPaciente.setBounds(537, 436, 209, 36);
+		btnVisualizarPaciente.setBounds(599, 436, 147, 36);
 		panel.add(btnVisualizarPaciente);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 109, 736, 296);
+		panel.add(scrollPane);
+		
+		JList list = new JList();
+		list.setBorder(new TitledBorder(null, "Informa\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		scrollPane.setViewportView(list);
 	}
 		
 		private void procurarPaciente() {
 	        String termo = textField.getText().trim().toLowerCase();
-	        areaInformacoes.setText("");
 	        pacienteSelecionado = null;
 
 	        try {
@@ -111,8 +109,6 @@ public class PanelPesquisaPacienteCorrigido extends JPanel {
 	                    return;
 	                }
 	            }
-
-	            areaInformacoes.setText("Nenhum paciente encontrado.");
 	        } catch (SystemException e) {
 	            JOptionPane.showMessageDialog(null, "Erro ao buscar pacientes: " + e.getMessage());
 	        }
@@ -124,5 +120,4 @@ public class PanelPesquisaPacienteCorrigido extends JPanel {
 	                p.getTelefone(), p.getEndereco(), p.getCep(), p.getEstado(), p.getNumeroProntuario()
 	            );
 	        }
-
 }

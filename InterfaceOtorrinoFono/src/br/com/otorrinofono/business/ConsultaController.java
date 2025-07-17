@@ -21,8 +21,8 @@ public class ConsultaController {
 	        if (consulta == null) {
 	            throw new BusinessException("Consulta não pode ser nula.");
 	        }
-	        if (consulta.getPacienteId() <= 0) {
-	            throw new BusinessException("ID do paciente é obrigatório e deve ser maior que zero.");
+	        if (consulta.getPacienteCpf() == null || consulta.getPacienteCpf().trim().isEmpty()) {
+	            throw new BusinessException("CPF do paciente é obrigatório.");
 	        }
 	        if (consulta.getDataConsulta() == null) {
 	            throw new BusinessException("A data da consulta é obrigatória.");

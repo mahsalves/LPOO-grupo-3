@@ -45,7 +45,7 @@ public class PanelPesquisaFuncionario extends JPanel {
 		
 		JPanel painelBusca = new JPanel((LayoutManager) null);
 		painelBusca.setBorder(BorderFactory.createTitledBorder("Buscar"));
-		painelBusca.setBounds(0, 42, 756, 46);
+		painelBusca.setBounds(0, 42, 612, 46);
 		panel.add(painelBusca);
 		painelBusca.setLayout(new BorderLayout(5, 5));
 		
@@ -61,7 +61,7 @@ public class PanelPesquisaFuncionario extends JPanel {
 		areaInformacoes.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		areaInformacoes.setEditable(false);
 		areaInformacoes.setBorder(BorderFactory.createTitledBorder("Informações"));
-		areaInformacoes.setBounds(10, 94, 736, 328);
+		areaInformacoes.setBounds(10, 118, 736, 304);
 		panel.add(areaInformacoes);
 		
 		JButton btnVoltar = new JButton("Voltar");
@@ -82,7 +82,16 @@ public class PanelPesquisaFuncionario extends JPanel {
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnVoltar.setBounds(10, 451, 101, 21);
 		panel.add(btnVoltar);
+		
+		JButton btnProcurar = new JButton("Procurar");
+		btnProcurar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnProcurar.setBounds(630, 56, 105, 32);
+		panel.add(btnProcurar);
+		
+		JButton btnVisualizarPaciente = new JButton("Visualizar paciente");
+		btnVisualizarPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnVisualizarPaciente.setBounds(599, 436, 147, 36);
+		panel.add(btnVisualizarPaciente);
 
 	}
-
 }

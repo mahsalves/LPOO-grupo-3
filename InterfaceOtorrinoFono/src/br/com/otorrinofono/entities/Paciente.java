@@ -18,6 +18,20 @@ public class Paciente {
     public Paciente() {
     }
     
+    public Paciente(String nome, String cpf, String email, String telefone, String cidade, String endereco, String cep, String numeroProntuario, String genero, String estado, LocalDate dataNascimento) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.telefone = telefone;
+        this.cidade = cidade;
+        this.endereco = endereco;
+        this.cep = cep;
+        this.numeroProntuario = numeroProntuario;
+        this.genero = genero;
+        this.estado = estado;
+        this.dataNascimento = dataNascimento;
+    }
+    
     public String getNome() {
         return nome;
     }

@@ -29,11 +29,11 @@ public class ConsultaRepository {
             conn = DatabaseConnection.getConnection();
 
             if (consulta.getId() == 0) { 
-                sql = "INSERT INTO consultas (paciente_id, data_consulta, anamnese, avaliacao_vocal, diagnostico, conduta, observacoes, anexar_exames) " +
+                sql = "INSERT INTO consultas (paciente_cpf, data_consulta, anamnese, avaliacao_vocal, diagnostico, conduta, observacoes, anexar_exames) " +
                       "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             } else { 
-                sql = "UPDATE consultas SET paciente_id = ?, data_consulta = ?, anamnese = ?, avaliacao_vocal = ?, diagnostico = ?, conduta = ?, observacoes = ?, anexar_exames = ? WHERE id = ?";
+                sql = "UPDATE consultas SET paciente_cpf = ?, data_consulta = ?, anamnese = ?, avaliacao_vocal = ?, diagnostico = ?, conduta = ?, observacoes = ?, anexar_exames = ? WHERE id = ?";
                 stmt = conn.prepareStatement(sql);
             }
 
@@ -78,7 +78,7 @@ public class ConsultaRepository {
     }
 
     public Consulta buscarPorId(int id) throws SystemException {
-        String sql = "SELECT id, paciente_id, data_consulta, anamnese, avaliacao_vocal, diagnostico, conduta, observacoes, anexar_exames FROM consultas WHERE id = ?";
+        String sql = "SELECT id, paciente_cpf, data_consulta, anamnese, avaliacao_vocal, diagnostico, conduta, observacoes, anexar_exames FROM consultas WHERE id = ?";
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -93,7 +93,7 @@ public class ConsultaRepository {
             if (rs.next()) {
                 consulta = new Consulta();
                 consulta.setId(rs.getInt("id"));
-                consulta.setPacienteId(rs.getInt("paciente_id"));
+                consulta.setPacienteCpf(rs.getString("paciente_cpf"));
                 consulta.setDataConsulta(rs.getDate("data_consulta") != null ? rs.getDate("data_consulta").toLocalDate() : null);
                 consulta.setAnamnese(rs.getString("anamnese"));
                 consulta.setAvaliacaoVocal(rs.getString("avaliacao_vocal"));
@@ -104,7 +104,7 @@ public class ConsultaRepository {
             }
             return consulta;
         } catch (SQLException e) {
-            throw new SystemException("Erro ao buscar consulta por ID: " + e.getMessage(), e);
+            throw new SystemException("Erro ao buscar consulta por CPF: " + e.getMessage(), e);
         } finally {
             DatabaseConnection.closeConnection(conn, stmt);
             if (rs != null) {
@@ -116,7 +116,7 @@ public class ConsultaRepository {
     public List<Consulta> buscarConsultasPorNomeOuCpf(String termoBusca) throws SystemException {
         List<Consulta> consultas = new ArrayList<>();
         String sql = "SELECT c.* FROM consultas c " +
-                     "JOIN pacientes p ON c.paciente_id = p.id " +
+                     "JOIN pacientes p ON c.paciente_cpf = p.cpf " +
                      "WHERE p.nome LIKE ? OR p.cpf LIKE ?";
 
         Connection conn = null;
@@ -134,7 +134,7 @@ public class ConsultaRepository {
             while (rs.next()) {
                 Consulta consulta = new Consulta();
                 consulta.setId(rs.getInt("id"));
-                consulta.setPacienteId(rs.getInt("paciente_id"));
+                consulta.setPacienteCpf(rs.getString("paciente_cpf"));
                 consulta.setDataConsulta(rs.getDate("data_consulta").toLocalDate());
                 consulta.setAnamnese(rs.getString("anamnese"));
                 consulta.setAvaliacaoVocal(rs.getString("avaliacao_vocal"));
@@ -149,7 +149,7 @@ public class ConsultaRepository {
         } finally {
             DatabaseConnection.closeConnection(conn, stmt);
             if (rs != null) {
-                try { rs.close(); } catch (SQLException e) { /* ignorar */ }
+                try { rs.close(); } catch (SQLException e) { }
             }
         }
 
@@ -175,7 +175,7 @@ public class ConsultaRepository {
 
     public List<Consulta> listarTodasConsultas() throws SystemException {
         List<Consulta> consultas = new ArrayList<>();
-        String sql = "SELECT id, paciente_id, data_consulta, anamnese, avaliacao_vocal, diagnostico, conduta, observacoes, anexar_exames FROM consultas";
+        String sql = "SELECT id, paciente_cpf, data_consulta, anamnese, avaliacao_vocal, diagnostico, conduta, observacoes, anexar_exames FROM consultas";
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -188,7 +188,7 @@ public class ConsultaRepository {
             while (rs.next()) {
                 Consulta consulta = new Consulta();
                 consulta.setId(rs.getInt("id"));
-                consulta.setPacienteId(rs.getInt("paciente_id"));
+                consulta.setPacienteCpf(rs.getString("paciente_cpf"));
                 consulta.setDataConsulta(rs.getDate("data_consulta") != null ? rs.getDate("data_consulta").toLocalDate() : null);
                 consulta.setAnamnese(rs.getString("anamnese"));
                 consulta.setAvaliacaoVocal(rs.getString("avaliacao_vocal"));
@@ -225,7 +225,7 @@ public class ConsultaRepository {
             while (rs.next()) {
                 Consulta consulta = new Consulta();
                 consulta.setId(rs.getInt("id"));
-                consulta.setPacienteId(rs.getInt("paciente_id"));
+                consulta.setPacienteCpf(rs.getString("paciente_cpf"));
                 consulta.setDataConsulta(rs.getDate("data_consulta") != null ? rs.getDate("data_consulta").toLocalDate() : null);
                 consulta.setAnamnese(rs.getString("anamnese"));
                 consulta.setAvaliacaoVocal(rs.getString("avaliacao_vocal"));

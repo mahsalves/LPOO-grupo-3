@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Consulta {
 	private int id;
-    private int pacienteId;
+    private String pacienteCpf;
     private LocalDate dataConsulta; 
 
     private String anamnese;
@@ -20,9 +20,9 @@ public class Consulta {
     }
 
     
-    public Consulta(int id, int pacienteId, LocalDate dataConsulta, String anamnese, String avaliacaoVocal, String diagnostico, String conduta, String observacoes, byte[] anexarExames) {
+    public Consulta(int id, String pacienteCpf, LocalDate dataConsulta, String anamnese, String avaliacaoVocal, String diagnostico, String conduta, String observacoes, byte[] anexarExames) {
         this.id = id;
-        this.pacienteId = pacienteId;
+        this.pacienteCpf = pacienteCpf;
         this.dataConsulta = dataConsulta;
         this.anamnese = anamnese;
         this.avaliacaoVocal = avaliacaoVocal;
@@ -32,16 +32,16 @@ public class Consulta {
         this.anexarExames = anexarExames;
     }
 
-    public Consulta(int pacienteId, LocalDate dataConsulta, String anamnese, String avaliacaoVocal, String diagnostico, String conduta, String observacoes, byte[] anexarExames) {
-        this(0, pacienteId, dataConsulta, anamnese, avaliacaoVocal, diagnostico, conduta, observacoes, anexarExames);
+    public Consulta(String pacienteCpf, LocalDate dataConsulta, String anamnese, String avaliacaoVocal, String diagnostico, String conduta, String observacoes, byte[] anexarExames) {
+        this(0, pacienteCpf, dataConsulta, anamnese, avaliacaoVocal, diagnostico, conduta, observacoes, anexarExames);
     }
 
     
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
-    public int getPacienteId() { return pacienteId; }
-    public void setPacienteId(int pacienteId) { this.pacienteId = pacienteId; }
+    public String getPacienteCpf() { return pacienteCpf; }
+    public void setPacienteCpf(String pacienteCpf) { this.pacienteCpf = pacienteCpf; }
 
     public LocalDate getDataConsulta() { return dataConsulta; }
     public void setDataConsulta(LocalDate dataConsulta) { this.dataConsulta = dataConsulta; }
@@ -66,6 +66,6 @@ public class Consulta {
 
     @Override
     public String toString() {
-        return "Consulta [ID=" + id + ", Paciente ID=" + pacienteId + ", Data=" + dataConsulta + "]";
+        return "Consulta [ID=" + id + ", Paciente CPF=" + pacienteCpf + ", Data=" + dataConsulta + "]";
     }
 }

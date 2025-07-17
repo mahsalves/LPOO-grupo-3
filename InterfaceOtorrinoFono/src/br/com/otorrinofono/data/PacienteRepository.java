@@ -163,7 +163,7 @@ public class PacienteRepository {
     }
 
     public void removerPorCpf(String cpf) {
-        String sql = "DELETE FROM paciente WHERE cpf = ?";
+    	String sql = "DELETE FROM consultas WHERE paciente_cpf = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -176,37 +176,41 @@ public class PacienteRepository {
         }
     }
     
-    public Optional<Paciente> buscarPorId(int id) {
-    	String sql = "SELECT * FROM paciente WHERE id = ?";
+    public List<Paciente> buscarPorNomeOuProntuario(String termo) {
+        List<Paciente> pacientes = new ArrayList<>();
+        String sql = "SELECT * FROM paciente WHERE LOWER(nome) LIKE ? OR LOWER(prontuario) LIKE ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, id);
+            String termoBusca = "%" + termo.toLowerCase() + "%";
+            stmt.setString(1, termoBusca);
+            stmt.setString(2, termoBusca);
+
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 Paciente paciente = new Paciente();
                 paciente.setNome(rs.getString("nome"));
                 paciente.setCpf(rs.getString("cpf"));
-                paciente.setDataNascimento(rs.getDate("data_nasc").toLocalDate());
+                paciente.setEmail(rs.getString("email"));
                 paciente.setTelefone(rs.getString("telefone"));
-                paciente.setTelefone(rs.getString("endereco"));
-                paciente.setTelefone(rs.getString("genero"));
-                paciente.setTelefone(rs.getString("email"));
-                paciente.setTelefone(rs.getString("cidade"));
-                paciente.setTelefone(rs.getString("estado"));
-                paciente.setTelefone(rs.getString("cep"));
-                paciente.setTelefone(rs.getString("prontuario"));
-                
-
-                return Optional.of(paciente);
+                paciente.setCidade(rs.getString("cidade"));
+                paciente.setEndereco(rs.getString("endereco"));
+                paciente.setCep(rs.getString("cep"));
+                paciente.setNumeroProntuario(rs.getString("prontuario"));
+                paciente.setGenero(rs.getString("genero"));
+                paciente.setEstado(rs.getString("estado"));
+                if (rs.getDate("data_nascimento") != null) {
+                    paciente.setDataNascimento(rs.getDate("data_nascimento").toLocalDate());
+                }
+                pacientes.add(paciente);
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar pacientes por nome ou prontuário", e);
         }
 
-        return Optional.empty();
+        return pacientes;
     }
 }
