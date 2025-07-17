@@ -36,4 +36,5 @@ public class FuncionarioController {
 
         repository.salvar(funcionario);
     }
+	
 }

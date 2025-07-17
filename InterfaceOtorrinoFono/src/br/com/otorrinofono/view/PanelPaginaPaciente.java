@@ -23,16 +23,96 @@ public class PanelPaginaPaciente extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private String pacienteCpf;
 	
-	private JLabel labelNomePaciente;
-	private JLabel labelCpfPaciente;
-	private JLabel labelDataNascPaciente;
-	private JLabel labelTelefonePaciente;
-	private JLabel labelEmailPaciente;
-	private JLabel labelGeneroPaciente;
-	private JLabel labelEnderecoPaciente;
-	private JLabel labelEstadoPaciente;
-	private JLabel labelCepPaciente;
-	private JLabel labelProntuarioPaciente;
+	private String nomePaciente;
+	private String cpfPaciente;
+	private String dataNascPaciente;
+	private String telefonePaciente;
+	private String emailPaciente;
+	private String generoPaciente;
+	private String enderecoPaciente;
+	private String estadoPaciente;
+	private String cepPaciente;
+	private String prontuarioPaciente;
+
+	public String getNomePaciente() {
+		return nomePaciente;
+	}
+
+	public void setNomePaciente(String nomePaciente) {
+		this.nomePaciente = nomePaciente;
+	}
+
+	public String getCpfPaciente() {
+		return cpfPaciente;
+	}
+
+	public void setCpfPaciente(String cpfPaciente) {
+		this.cpfPaciente = cpfPaciente;
+	}
+
+	public String getDataNascPaciente() {
+		return dataNascPaciente;
+	}
+
+	public void setDataNascPaciente(String dataNascPaciente) {
+		this.dataNascPaciente = dataNascPaciente;
+	}
+
+	public String getTelefonePaciente() {
+		return telefonePaciente;
+	}
+
+	public void setTelefonePaciente(String telefonePaciente) {
+		this.telefonePaciente = telefonePaciente;
+	}
+
+	public String getEmailPaciente() {
+		return emailPaciente;
+	}
+
+	public void setEmailPaciente(String emailPaciente) {
+		this.emailPaciente = emailPaciente;
+	}
+
+	public String getGeneroPaciente() {
+		return generoPaciente;
+	}
+
+	public void setGeneroPaciente(String generoPaciente) {
+		this.generoPaciente = generoPaciente;
+	}
+
+	public String getEnderecoPaciente() {
+		return enderecoPaciente;
+	}
+
+	public void setEnderecoPaciente(String enderecoPaciente) {
+		this.enderecoPaciente = enderecoPaciente;
+	}
+
+	public String getEstadoPaciente() {
+		return estadoPaciente;
+	}
+
+	public void setEstadoPaciente(String estadoPaciente) {
+		this.estadoPaciente = estadoPaciente;
+	}
+
+	public String getCepPaciente() {
+		return cepPaciente;
+	}
+
+	public void setCepPaciente(String cepPaciente) {
+		this.cepPaciente = cepPaciente;
+	}
+
+	public String getProntuarioPaciente() {
+		return prontuarioPaciente;
+	}
+
+	public void setProntuarioPaciente(String prontuarioPaciente) {
+		this.prontuarioPaciente = prontuarioPaciente;
+	}
 
 	/**
 	 * Create the panel.
@@ -103,47 +183,47 @@ public class PanelPaginaPaciente extends JPanel {
 		labelProntuario.setBounds(10, 310, 127, 15);
 		panelInternoPagPaciente.add(labelProntuario);
 		
-		JLabel labelNomePaciente = new JLabel("Nome do paciente");
+		JLabel labelNomePaciente = new JLabel(nomePaciente);
 		labelNomePaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		labelNomePaciente.setBounds(147, 40, 200, 15);
 		panelInternoPagPaciente.add(labelNomePaciente);
 		
-		JLabel labelDataNascPaciente = new JLabel("00/00/0000");
+		JLabel labelDataNascPaciente = new JLabel(dataNascPaciente);
 		labelDataNascPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		labelDataNascPaciente.setBounds(147, 70, 200, 15);
 		panelInternoPagPaciente.add(labelDataNascPaciente);
 		
-		JLabel labelCpfPaciente = new JLabel("000.000.000-00");
+		JLabel labelCpfPaciente = new JLabel(cpfPaciente);
 		labelCpfPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		labelCpfPaciente.setBounds(147, 100, 200, 15);
 		panelInternoPagPaciente.add(labelCpfPaciente);
 		
-		JLabel labelGeneroPaciente = new JLabel("Gênero do paciente");
+		JLabel labelGeneroPaciente = new JLabel(generoPaciente);
 		labelGeneroPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		labelGeneroPaciente.setBounds(147, 130, 200, 15);
 		panelInternoPagPaciente.add(labelGeneroPaciente);
 		
-		JLabel labelEmailPaciente = new JLabel("E-mail do paciente");
+		JLabel labelEmailPaciente = new JLabel(emailPaciente);
 		labelEmailPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		labelEmailPaciente.setBounds(147, 160, 200, 15);
 		panelInternoPagPaciente.add(labelEmailPaciente);
 		
-		JLabel labelTelefonePaciente = new JLabel("(00) 00000-0000");
+		JLabel labelTelefonePaciente = new JLabel(telefonePaciente);
 		labelTelefonePaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		labelTelefonePaciente.setBounds(147, 190, 200, 15);
 		panelInternoPagPaciente.add(labelTelefonePaciente);
 		
-		JLabel labelEnderecoPaciente = new JLabel("Endereço do paciente");
+		JLabel labelEnderecoPaciente = new JLabel(enderecoPaciente);
 		labelEnderecoPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		labelEnderecoPaciente.setBounds(147, 220, 200, 15);
 		panelInternoPagPaciente.add(labelEnderecoPaciente);
 		
-		JLabel labelEstadoPaciente = new JLabel("Estado do paciente");
+		JLabel labelEstadoPaciente = new JLabel(estadoPaciente);
 		labelEstadoPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		labelEstadoPaciente.setBounds(147, 250, 200, 15);
 		panelInternoPagPaciente.add(labelEstadoPaciente);
 		
-		JLabel labelCepPaciente = new JLabel("00000-000");
+		JLabel labelCepPaciente = new JLabel(cepPaciente);
 		labelCepPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		labelCepPaciente.setBounds(147, 280, 200, 15);
 		panelInternoPagPaciente.add(labelCepPaciente);
@@ -207,7 +287,7 @@ public class PanelPaginaPaciente extends JPanel {
 		btnHistoricoDeConsultas.setBounds(470, 175, 200, 30);
 		panelInternoPagPaciente.add(btnHistoricoDeConsultas);
 		
-		JLabel lblNmeroDoPronturio = new JLabel("Número do prontuário");
+		JLabel lblNmeroDoPronturio = new JLabel(prontuarioPaciente);
 		lblNmeroDoPronturio.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNmeroDoPronturio.setBounds(147, 313, 200, 15);
 		panelInternoPagPaciente.add(lblNmeroDoPronturio);
@@ -231,16 +311,28 @@ public class PanelPaginaPaciente extends JPanel {
 
 		if (pacienteOptional.isPresent()) {
 			Paciente paciente = pacienteOptional.get();
-			labelNomeValor.setText(paciente.getNome());
-			labelCpfValor.setText(paciente.getCpf());
-			labelDataNascimentoValor.setText(paciente.getDataNascimento().toString());
-			labelTelefoneValor.setText(paciente.getTelefone());
-			labelEmailValor.setText(paciente.getEmail());
-			labelGeneroValor.setText(paciente.getGenero());
-			labelEnderecoValor.setText(paciente.getEndereco());
-			labelEstadoValor.setText(paciente.getEstado());
-			labelCepValor.setText(paciente.getCep());
-			labelProntuarioValor.setText(paciente.getProntuario());
+			
+			String nome = (paciente.getNome());
+			setNomePaciente(nome);
+			String cpf = (paciente.getCpf());
+			setCpfPaciente(cpf);
+			String dataNasc = (paciente.getDataNascimento().toString());
+			setDataNascPaciente(dataNasc);
+			String telefone = (paciente.getTelefone());
+			setTelefonePaciente(telefone);
+			String email = (paciente.getEmail());
+			setEmailPaciente(email);
+			String genero = (paciente.getGenero());
+			setGeneroPaciente(genero);
+			String endereco = (paciente.getEndereco());
+			setEnderecoPaciente(endereco);
+			String estado = (paciente.getEstado());
+			setEstadoPaciente(estado);
+			String cep = (paciente.getCep());
+			setCepPaciente(cep);
+			String prontuario = (paciente.getNumeroProntuario());
+			setProntuarioPaciente(prontuario);
+			
 		} else {
 			JOptionPane.showMessageDialog(this, "Paciente não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
 		}
