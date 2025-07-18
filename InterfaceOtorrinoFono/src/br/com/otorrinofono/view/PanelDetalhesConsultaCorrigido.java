@@ -15,6 +15,16 @@ import java.awt.*;
 import br.com.otorrinofono.entities.Consulta;
 
 public class PanelDetalhesConsultaCorrigido extends JPanel {
+	private Consulta consulta;
+    private JPanel painelAnterior;
+    
+    private JTextArea textAreaAnamnese;
+    private JTextArea textAreaAvaliacaoVocal;
+    private JTextArea textAreaDiagnostico;
+    private JTextArea textAreaConduta;
+    private JTextArea textAreaObservacoes;
+
+	private static final long serialVersionUID = 1L;
 	
 	public PanelDetalhesConsultaCorrigido(Consulta consulta) {
         setLayout(new BorderLayout());
@@ -31,29 +41,7 @@ public class PanelDetalhesConsultaCorrigido extends JPanel {
         areaTexto.setEditable(false);
 
         add(new JScrollPane(areaTexto), BorderLayout.CENTER);
-    }
 
-	
-	private Consulta consulta;
-    private JPanel painelAnterior;
-    
-    private JTextArea textAreaAnamnese;
-    private JTextArea textAreaAvaliacaoVocal;
-    private JTextArea textAreaDiagnostico;
-    private JTextArea textAreaConduta;
-    private JTextArea textAreaObservacoes;
-
-	private static final long serialVersionUID = 1L;
-	
-	public PanelDetalhesConsultaCorrigido(Consulta consulta, JPanel painelAnterior) {
-	    this.consulta = consulta;
-	    this.painelAnterior = painelAnterior;
-	}
-
-	/**
-	 * Create the panel.
-	 */
-	public PanelDetalhesConsultaCorrigido() {
 		setBackground(new Color(0, 128, 255));
 		setBounds(0, 0, 884, 561);
 		setLayout(null);
@@ -96,7 +84,7 @@ public class PanelDetalhesConsultaCorrigido extends JPanel {
 		labelObservacoes.setBounds(370, 243, 79, 17);
 		panel.add(labelObservacoes);
 		
-		JTextArea textAreaAnamnese = new JTextArea();
+		textAreaAnamnese = new JTextArea();
 		textAreaAnamnese.setBounds(112, 107, 199, 94);
 		textAreaAnamnese.setLineWrap(true);
 		textAreaAnamnese.setWrapStyleWord(true);
@@ -107,7 +95,7 @@ public class PanelDetalhesConsultaCorrigido extends JPanel {
 		scrollPaneAnamnese.setBounds(0, 0, 2, 2);
 		textAreaAnamnese.add(scrollPaneAnamnese);
 		
-		JTextArea textAreaAvaliacaoVocal = new JTextArea();
+		textAreaAvaliacaoVocal = new JTextArea();
 		textAreaAvaliacaoVocal.setBounds(112, 211, 199, 94);
 		textAreaAvaliacaoVocal.setLineWrap(true);
 		textAreaAvaliacaoVocal.setWrapStyleWord(true);
@@ -118,7 +106,7 @@ public class PanelDetalhesConsultaCorrigido extends JPanel {
 		scrollPaneAvaliacaoVocal.setBounds(0, 0, 2, 2);
 		textAreaAvaliacaoVocal.add(scrollPaneAvaliacaoVocal);
 		
-		JTextArea textAreaDiagnostico = new JTextArea();
+		textAreaDiagnostico = new JTextArea();
 		textAreaDiagnostico.setBounds(112, 315, 199, 94);
 		textAreaDiagnostico.setLineWrap(true);
 		textAreaDiagnostico.setWrapStyleWord(true);
@@ -129,7 +117,7 @@ public class PanelDetalhesConsultaCorrigido extends JPanel {
 		scrollPaneDiagnostico.setBounds(0, 0, 2, 2);
 		textAreaDiagnostico.add(scrollPaneDiagnostico);
 		
-		JTextArea textAreaConduta = new JTextArea();
+		textAreaConduta = new JTextArea();
 		textAreaConduta.setBounds(457, 107, 199, 94);
 		textAreaConduta.setLineWrap(true);
 		textAreaConduta.setWrapStyleWord(true);
@@ -140,7 +128,7 @@ public class PanelDetalhesConsultaCorrigido extends JPanel {
 		scrollPaneConduta.setBounds(0, 0, 2, 2);
 		textAreaConduta.add(scrollPaneConduta);
 		
-		JTextArea textAreaObservacoes = new JTextArea();
+		textAreaObservacoes = new JTextArea();
 		textAreaObservacoes.setBounds(457, 211, 199, 94);
 		textAreaObservacoes.setLineWrap(true);
 		textAreaObservacoes.setWrapStyleWord(true);

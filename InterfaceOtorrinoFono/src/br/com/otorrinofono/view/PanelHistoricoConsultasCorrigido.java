@@ -38,6 +38,7 @@ public class PanelHistoricoConsultasCorrigido extends JPanel {
         this.painelAnterior = painelAnterior;
         inicializarComponentes();
         carregarConsultas();
+        
     }
 
     private void inicializarComponentes() {
@@ -86,6 +87,7 @@ public class PanelHistoricoConsultasCorrigido extends JPanel {
         btnVisualizar.setFont(new Font("Tahoma", Font.PLAIN, 14));
         btnVisualizar.setBounds(648, 431, 126, 33);
         panelInternoPagPaciente.add(btnVisualizar);
+        
 
         btnVisualizar.addMouseListener(new MouseAdapter() {
             @Override
@@ -95,9 +97,7 @@ public class PanelHistoricoConsultasCorrigido extends JPanel {
                     Consulta consultaSelecionada = consultasDoPaciente.get(index);
                     System.out.println("Consulta selecionada: " + consultaSelecionada);
 
-                    // Cria o painel de detalhes e troca o painel
                     PanelDetalhesConsultaCorrigido detalhes = new PanelDetalhesConsultaCorrigido(consultaSelecionada);
-
                     JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnVisualizar);
                     frame.getContentPane().removeAll();
                     frame.getContentPane().add(detalhes);
