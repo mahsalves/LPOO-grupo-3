@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
 
 public class PanelDetalhesConsultaCorrigido extends JPanel {
 
@@ -58,25 +59,60 @@ public class PanelDetalhesConsultaCorrigido extends JPanel {
 		labelObservacoes.setBounds(370, 243, 79, 17);
 		panel.add(labelObservacoes);
 		
-		JTextArea textArea_anamnese = new JTextArea();
-		textArea_anamnese.setBounds(112, 107, 199, 94);
-		panel.add(textArea_anamnese);
+		JTextArea textAreaAnamnese = new JTextArea();
+		textAreaAnamnese.setBounds(112, 107, 199, 94);
+		textAreaAnamnese.setLineWrap(true);
+		textAreaAnamnese.setWrapStyleWord(true);
+		textAreaAnamnese.setEditable(false);
+		panel.add(textAreaAnamnese);
 		
-		JTextArea textArea_avaliacaoVocal = new JTextArea();
-		textArea_avaliacaoVocal.setBounds(112, 211, 199, 94);
-		panel.add(textArea_avaliacaoVocal);
+		JScrollPane scrollPaneAnamnese = new JScrollPane();
+		scrollPaneAnamnese.setBounds(0, 0, 2, 2);
+		textAreaAnamnese.add(scrollPaneAnamnese);
 		
-		JTextArea textArea_diagnostico = new JTextArea();
-		textArea_diagnostico.setBounds(112, 315, 199, 94);
-		panel.add(textArea_diagnostico);
+		JTextArea textAreaAvaliacaoVocal = new JTextArea();
+		textAreaAvaliacaoVocal.setBounds(112, 211, 199, 94);
+		textAreaAvaliacaoVocal.setLineWrap(true);
+		textAreaAvaliacaoVocal.setWrapStyleWord(true);
+		textAreaAvaliacaoVocal.setEditable(false);
+		panel.add(textAreaAvaliacaoVocal);
 		
-		JTextArea textArea_conduta = new JTextArea();
-		textArea_conduta.setBounds(457, 107, 199, 94);
-		panel.add(textArea_conduta);
+		JScrollPane scrollPaneAvaliacaoVocal = new JScrollPane();
+		scrollPaneAvaliacaoVocal.setBounds(0, 0, 2, 2);
+		textAreaAvaliacaoVocal.add(scrollPaneAvaliacaoVocal);
 		
-		JTextArea textArea_observacoes = new JTextArea();
-		textArea_observacoes.setBounds(457, 211, 199, 94);
-		panel.add(textArea_observacoes);
+		JTextArea textAreaDiagnostico = new JTextArea();
+		textAreaDiagnostico.setBounds(112, 315, 199, 94);
+		textAreaDiagnostico.setLineWrap(true);
+		textAreaDiagnostico.setWrapStyleWord(true);
+		textAreaDiagnostico.setEditable(false);
+		panel.add(textAreaDiagnostico);
+		
+		JScrollPane scrollPaneDiagnostico = new JScrollPane();
+		scrollPaneDiagnostico.setBounds(0, 0, 2, 2);
+		textAreaDiagnostico.add(scrollPaneDiagnostico);
+		
+		JTextArea textAreaConduta = new JTextArea();
+		textAreaConduta.setBounds(457, 107, 199, 94);
+		textAreaConduta.setLineWrap(true);
+		textAreaConduta.setWrapStyleWord(true);
+		textAreaConduta.setEditable(false);
+		panel.add(textAreaConduta);
+		
+		JScrollPane scrollPaneConduta = new JScrollPane();
+		scrollPaneConduta.setBounds(0, 0, 2, 2);
+		textAreaConduta.add(scrollPaneConduta);
+		
+		JTextArea textAreaObservacoes = new JTextArea();
+		textAreaObservacoes.setBounds(457, 211, 199, 94);
+		textAreaObservacoes.setLineWrap(true);
+		textAreaObservacoes.setWrapStyleWord(true);
+		textAreaObservacoes.setEditable(false);
+		panel.add(textAreaObservacoes);
+		
+		JScrollPane scrollPaneAreaObservacoes = new JScrollPane();
+		scrollPaneAreaObservacoes.setBounds(0, 0, 2, 2);
+		textAreaObservacoes.add(scrollPaneAreaObservacoes);
 		
 		JButton BotaoExamesAnexadosConsulta = new JButton("Exames anexados");
 		BotaoExamesAnexadosConsulta.setFont(new Font("Tahoma", Font.PLAIN, 14));
