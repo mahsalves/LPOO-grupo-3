@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 
 import br.com.otorrinofono.entities.Funcionario;
+import br.com.otorrinofono.util.Sessao;
 import br.com.otorrinofono.data.FuncionarioRepository;
 
 public class Main extends JFrame {
@@ -99,6 +100,8 @@ public class Main extends JFrame {
 
 		        if (funcionario != null) {
 		            JOptionPane.showMessageDialog(null, "Login bem-sucedido!");
+		            
+		            Sessao.setFuncionarioLogado(funcionario);
 
 		            PanelMenu painelMenu = new PanelMenu();
 		            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnEntrar);

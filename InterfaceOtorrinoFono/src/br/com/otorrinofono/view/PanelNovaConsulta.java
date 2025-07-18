@@ -12,8 +12,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import br.com.otorrinofono.entities.Paciente;
+import br.com.otorrinofono.entities.Funcionario;
 import br.com.otorrinofono.entities.Consulta;
 import br.com.otorrinofono.business.ConsultaController;
+import br.com.otorrinofono.util.Sessao;
 import br.com.otorrinofono.exception.BusinessException;
 import br.com.otorrinofono.exception.SystemException;
 
@@ -191,6 +193,13 @@ public class PanelNovaConsulta extends JPanel {
         consulta.setConduta(textField_conduta.getText());
         consulta.setObservacoes(textField_observacoes.getText());
         consulta.setAnexarExames(anexoExameBytes);
+        
+        Funcionario funcionarioLogado = Sessao.getFuncionarioLogado();
+        if (funcionarioLogado == null) {
+            JOptionPane.showMessageDialog(this, "Nenhum funcionário logado. Por favor, faça login.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        consulta.setFuncionarioCpf(funcionarioLogado.getCpf());
 
         if (pacienteDaConsulta != null && pacienteDaConsulta.getCpf() != null) {
             consulta.setPacienteCpf(pacienteDaConsulta.getCpf());

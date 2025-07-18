@@ -91,12 +91,12 @@ public class ConsultaController {
 	    }
 
 
-	    public List<Consulta> listarConsultasPorPaciente(int pacienteId) throws BusinessException, SystemException {
-	        if (pacienteId <= 0) {
-	            throw new BusinessException("ID do paciente inválido para listar consultas.");
-	        }
+	    public List<Consulta> listarConsultasPorPaciente(String pacienteCpf) throws BusinessException, SystemException {
+	    	if (pacienteCpf == null || !pacienteCpf.matches("\\d{11}")) {
+	    	    throw new BusinessException("CPF do paciente inválido para listar consultas.");
+	    	}
 	        try {
-	            return consultaRepository.listarConsultasPorPaciente(pacienteId);
+	            return consultaRepository.listarConsultasPorPaciente(pacienteCpf);
 	        } catch (SystemException e) {
 	            throw new SystemException("Erro no banco de dados ao listar consultas por paciente: " + e.getMessage(), e);
 	        } catch (Exception e) {

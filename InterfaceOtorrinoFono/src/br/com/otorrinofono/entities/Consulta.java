@@ -6,6 +6,7 @@ public class Consulta {
 	private int id;
     private String pacienteCpf;
     private LocalDate dataConsulta; 
+    private String funcionarioCpf;
 
     private String anamnese;
     private String avaliacaoVocal;
@@ -63,6 +64,13 @@ public class Consulta {
 
     public byte[] getAnexarExames() { return anexarExames; }
     public void setAnexarExames(byte[] anexarExames) { this.anexarExames = anexarExames; }
+    
+    public String getFuncionarioCpf() {
+        return funcionarioCpf;
+    }
+    public void setFuncionarioCpf(String funcionarioCpf) {
+        this.funcionarioCpf = funcionarioCpf;
+    }
 
     @Override
     public String toString() {
