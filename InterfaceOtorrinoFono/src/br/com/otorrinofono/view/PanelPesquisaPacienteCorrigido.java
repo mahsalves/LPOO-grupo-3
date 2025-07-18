@@ -19,9 +19,24 @@ public class PanelPesquisaPacienteCorrigido extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
-	private JTextArea areaInformacoes;
+	//private JTextArea areaInformacoes;
     private Paciente pacienteSelecionado = null;
+    private DefaultListModel<Paciente> listModel;
+    private JList<Paciente> listaPacientes;
 
+    private String formatarPaciente(Paciente paciente) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nome: ").append(paciente.getNome()).append("\n");
+        sb.append("CPF: ").append(paciente.getCpf()).append("\n");
+        sb.append("Prontuário: ").append(paciente.getNumeroProntuario()).append("\n");
+        sb.append("Data de Nascimento: ").append(paciente.getDataNascimento()).append("\n");
+        sb.append("Gênero: ").append(paciente.getGenero()).append("\n");
+        sb.append("Telefone: ").append(paciente.getTelefone()).append("\n");
+        sb.append("Email: ").append(paciente.getEmail()).append("\n");
+        sb.append("Endereço: ").append(paciente.getEndereco()).append("\n");
+        return sb.toString();
+    }
+    
 	/**
 	 * Create the panel.
 	 */
@@ -79,6 +94,14 @@ public class PanelPesquisaPacienteCorrigido extends JPanel {
 		btnProcurar.addActionListener(e -> procurarPaciente());
 		
 		JButton btnVisualizarPaciente = new JButton("Visualizar paciente");
+		btnVisualizarPaciente.addActionListener(e -> {
+		    pacienteSelecionado = listaPacientes.getSelectedValue();
+		    if (pacienteSelecionado != null) {
+		        JOptionPane.showMessageDialog(this, formatarPaciente(pacienteSelecionado), "Paciente Selecionado", JOptionPane.INFORMATION_MESSAGE);
+		    } else {
+		        JOptionPane.showMessageDialog(this, "Selecione um paciente na lista.");
+		    }
+		});
 		btnVisualizarPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnVisualizarPaciente.setBounds(599, 436, 147, 36);
 		panel.add(btnVisualizarPaciente);
@@ -87,13 +110,17 @@ public class PanelPesquisaPacienteCorrigido extends JPanel {
 		scrollPane.setBounds(10, 109, 736, 296);
 		panel.add(scrollPane);
 		
-		JList list = new JList();
-		list.setBorder(new TitledBorder(null, "Informa\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		scrollPane.setViewportView(list);
+		listModel = new DefaultListModel<>();
+		listaPacientes = new JList<>(listModel);
+		listaPacientes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		listaPacientes.setBorder(new TitledBorder(null, "Resultados", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		scrollPane.setViewportView(listaPacientes);
+		
 	}
 		
 		private void procurarPaciente() {
 	        String termo = textField.getText().trim().toLowerCase();
+	        listModel.clear();
 	        pacienteSelecionado = null;
 
 	        try {
@@ -102,22 +129,18 @@ public class PanelPesquisaPacienteCorrigido extends JPanel {
 
 	            for (Paciente p : pacientes) {
 	                if (p.getNome().toLowerCase().contains(termo) || 
-	                    p.getNumeroProntuario().toLowerCase().contains(termo)) {
-	                    
-	                    pacienteSelecionado = p; // pega o primeiro que encontrar
-	                    areaInformacoes.setText(formatarPaciente(p));
-	                    return;
+	                    p.getNumeroProntuario().toLowerCase().contains(termo) ||
+	                    p.getCpf().toLowerCase().contains(termo)) {
+	                    listModel.addElement(p);
 	                }
 	            }
+
+	            if (listModel.isEmpty()) {
+	                JOptionPane.showMessageDialog(null, "Nenhum paciente encontrado.");
+	            }
+
 	        } catch (SystemException e) {
 	            JOptionPane.showMessageDialog(null, "Erro ao buscar pacientes: " + e.getMessage());
 	        }
-		}
-	        private String formatarPaciente(Paciente p) {
-	            return String.format(
-	                "Nome: %s\nData de Nascimento: %s\nCPF: %s\nGênero: %s\nEmail: %s\nTelefone: %s\nEndereço: %s\nCEP: %s\nEstado: %s\nProntuário: %s",
-	                p.getNome(), p.getDataNascimento(), p.getCpf(), p.getGenero(), p.getEmail(),
-	                p.getTelefone(), p.getEndereco(), p.getCep(), p.getEstado(), p.getNumeroProntuario()
-	            );
-	        }
+	    }
 }

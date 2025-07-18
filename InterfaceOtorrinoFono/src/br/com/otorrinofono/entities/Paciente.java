@@ -119,4 +119,9 @@ public class Paciente {
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
+    
+    @Override
+    public String toString() {
+        return nome + " | Prontuário: " + numeroProntuario + " | CPF: " + cpf;
+    }
 }

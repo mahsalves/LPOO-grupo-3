@@ -92,11 +92,11 @@ public class PacienteRepository {
 	            paciente.setCidade(rs.getString("cidade"));
 	            paciente.setEndereco(rs.getString("endereco"));
 	            paciente.setCep(rs.getString("cep"));
-	            paciente.setNumeroProntuario(rs.getString("numero_prontuario"));
+	            paciente.setNumeroProntuario(rs.getString("prontuario"));
 	            paciente.setGenero(rs.getString("genero"));
 	            paciente.setEstado(rs.getString("estado"));
-	            if (rs.getDate("data_nascimento") != null) {
-	                paciente.setDataNascimento(rs.getDate("data_nascimento").toLocalDate());
+	            if (rs.getDate("data_nasc") != null) {
+	                paciente.setDataNascimento(rs.getDate("data_nasc").toLocalDate());
 	            }
 	            pacientes.add(paciente);
 	        }
@@ -146,11 +146,11 @@ public class PacienteRepository {
                 paciente.setCidade(rs.getString("cidade"));
                 paciente.setEndereco(rs.getString("endereco"));
                 paciente.setCep(rs.getString("cep"));
-                paciente.setNumeroProntuario(rs.getString("numero_prontuario"));
+                paciente.setNumeroProntuario(rs.getString("prontuario"));
                 paciente.setGenero(rs.getString("genero"));
                 paciente.setEstado(rs.getString("estado"));
-                if (rs.getDate("data_nascimento") != null) {
-                    paciente.setDataNascimento(rs.getDate("data_nascimento").toLocalDate());
+                if (rs.getDate("data_nasc") != null) {
+                    paciente.setDataNascimento(rs.getDate("data_nasc").toLocalDate());
                 }
                 return paciente;
             }
@@ -201,8 +201,8 @@ public class PacienteRepository {
                 paciente.setNumeroProntuario(rs.getString("prontuario"));
                 paciente.setGenero(rs.getString("genero"));
                 paciente.setEstado(rs.getString("estado"));
-                if (rs.getDate("data_nascimento") != null) {
-                    paciente.setDataNascimento(rs.getDate("data_nascimento").toLocalDate());
+                if (rs.getDate("data_nasc") != null) {
+                    paciente.setDataNascimento(rs.getDate("data_nasc").toLocalDate());
                 }
                 pacientes.add(paciente);
             }
