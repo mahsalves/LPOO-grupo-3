@@ -9,10 +9,46 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import javax.swing.*;
+import java.awt.*;
+
+import br.com.otorrinofono.entities.Consulta;
 
 public class PanelDetalhesConsultaCorrigido extends JPanel {
+	
+	public PanelDetalhesConsultaCorrigido(Consulta consulta) {
+        setLayout(new BorderLayout());
+
+        JTextArea areaTexto = new JTextArea();
+        areaTexto.setText(
+            "Data: " + consulta.getDataConsulta() + "\n" +
+            "Anamnese: " + consulta.getAnamnese() + "\n" +
+            "Avaliação Vocal: " + consulta.getAvaliacaoVocal() + "\n" +
+            "Diagnóstico: " + consulta.getDiagnostico() + "\n" +
+            "Conduta: " + consulta.getConduta() + "\n" +
+            "Observações: " + consulta.getObservacoes()
+        );
+        areaTexto.setEditable(false);
+
+        add(new JScrollPane(areaTexto), BorderLayout.CENTER);
+    }
+
+	
+	private Consulta consulta;
+    private JPanel painelAnterior;
+    
+    private JTextArea textAreaAnamnese;
+    private JTextArea textAreaAvaliacaoVocal;
+    private JTextArea textAreaDiagnostico;
+    private JTextArea textAreaConduta;
+    private JTextArea textAreaObservacoes;
 
 	private static final long serialVersionUID = 1L;
+	
+	public PanelDetalhesConsultaCorrigido(Consulta consulta, JPanel painelAnterior) {
+	    this.consulta = consulta;
+	    this.painelAnterior = painelAnterior;
+	}
 
 	/**
 	 * Create the panel.
@@ -27,10 +63,11 @@ public class PanelDetalhesConsultaCorrigido extends JPanel {
 		add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Consulta dia XX/YY/ZZZZ");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel.setBounds(277, 21, 210, 20);
-		panel.add(lblNewLabel);
+		JLabel lblConsulta = new JLabel("Consulta");
+		lblConsulta.setHorizontalAlignment(SwingConstants.CENTER);
+		lblConsulta.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblConsulta.setBounds(277, 21, 210, 20);
+		panel.add(lblConsulta);
 		
 		JLabel LabelAnamnese = new JLabel("Anamnese");
 		LabelAnamnese.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -120,9 +157,18 @@ public class PanelDetalhesConsultaCorrigido extends JPanel {
 		panel.add(BotaoExamesAnexadosConsulta);
 		
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(e -> {
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            frame.getContentPane().removeAll();
+            frame.getContentPane().add(painelAnterior);
+            frame.revalidate();
+            frame.repaint();
+        });
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnVoltar.setBounds(9, 435, 96, 25);
 		panel.add(btnVoltar);
+		
+		preencherDados();
 		
 		JButton btnEditarConsulta = new JButton("Editar consulta");
 		btnEditarConsulta.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -130,4 +176,13 @@ public class PanelDetalhesConsultaCorrigido extends JPanel {
 		panel.add(btnEditarConsulta);
 		
 	}
-}
+		private void preencherDados() {
+	        if (consulta != null) {
+	            textAreaAnamnese.setText(consulta.getAnamnese());
+	            textAreaAvaliacaoVocal.setText(consulta.getAvaliacaoVocal());
+	            textAreaDiagnostico.setText(consulta.getDiagnostico());
+	            textAreaConduta.setText(consulta.getConduta());
+	            textAreaObservacoes.setText(consulta.getObservacoes());
+	        }
+	    }
+	}

@@ -13,10 +13,17 @@ import javax.swing.SwingUtilities;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import br.com.otorrinofono.entities.Paciente;
+
 public class PanelPaginaFuncionario extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel painelAnterior;
+	private Paciente paciente; 
+	
+	public PanelPaginaFuncionario(Paciente paciente) {
+        this.paciente = paciente;
+	}
 
 	/**
 	 * Create the panel.
@@ -144,7 +151,8 @@ public class PanelPaginaFuncionario extends JPanel {
 		btnHistoricoDeConsultas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				PanelHistoricoConsultasCorrigido painelHistoricoConsultas = new PanelHistoricoConsultasCorrigido(PanelPaginaFuncionario.this);
+				PanelHistoricoConsultasCorrigido painelHistoricoConsultas = 
+					    new PanelHistoricoConsultasCorrigido(paciente.getCpf(), painelAnterior);
 
 		        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnHistoricoDeConsultas);
 		        frame.getContentPane().removeAll();

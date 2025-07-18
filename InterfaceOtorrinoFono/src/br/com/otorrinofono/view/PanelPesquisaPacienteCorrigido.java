@@ -97,7 +97,14 @@ public class PanelPesquisaPacienteCorrigido extends JPanel {
 		btnVisualizarPaciente.addActionListener(e -> {
 		    pacienteSelecionado = listaPacientes.getSelectedValue();
 		    if (pacienteSelecionado != null) {
-		        JOptionPane.showMessageDialog(this, formatarPaciente(pacienteSelecionado), "Paciente Selecionado", JOptionPane.INFORMATION_MESSAGE);
+		    	JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+		        
+		        PanelPaginaPaciente painelPaciente = new PanelPaginaPaciente(pacienteSelecionado);
+		        
+		        frame.getContentPane().removeAll();
+		        frame.getContentPane().add(painelPaciente);
+		        frame.revalidate();
+		        frame.repaint();
 		    } else {
 		        JOptionPane.showMessageDialog(this, "Selecione um paciente na lista.");
 		    }

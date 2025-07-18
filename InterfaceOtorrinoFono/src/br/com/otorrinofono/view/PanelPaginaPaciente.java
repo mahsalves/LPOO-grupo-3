@@ -23,6 +23,7 @@ public class PanelPaginaPaciente extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private String pacienteCpf;
 	private Paciente paciente;
+	private JPanel painelAnterior;
 	
 	private String nomePaciente;
 	private String cpfPaciente;
@@ -45,6 +46,10 @@ public class PanelPaginaPaciente extends JPanel {
     private JLabel labelEstadoPaciente;
     private JLabel labelCepPaciente;
     private JLabel labelProntuarioPaciente;
+    
+    private String safeString(String valor) {
+        return valor == null ? "" : valor;
+    }
 
 	public String getNomePaciente() {
 		return nomePaciente;
@@ -293,7 +298,8 @@ public class PanelPaginaPaciente extends JPanel {
 		btnHistoricoDeConsultas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				PanelHistoricoConsultasCorrigido painelHistoricoConsultas = new PanelHistoricoConsultasCorrigido();
+				PanelHistoricoConsultasCorrigido painelHistoricoConsultas = 
+					    new PanelHistoricoConsultasCorrigido(paciente.getCpf(), painelAnterior);
 
 			    
 			    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(btnHistoricoDeConsultas);
@@ -335,16 +341,25 @@ public class PanelPaginaPaciente extends JPanel {
 	    }
 
 	    if (paciente != null) {
-	    	labelNomePaciente.setText(paciente.getNome());
-	        labelCpfPaciente.setText(paciente.getCpf());
-	        labelDataNascPaciente.setText(paciente.getDataNascimento().toString());
-	        labelTelefonePaciente.setText(paciente.getTelefone());
-	        labelEmailPaciente.setText(paciente.getEmail());
-	        labelGeneroPaciente.setText(paciente.getGenero());
-	        labelEnderecoPaciente.setText(paciente.getEndereco());
-	        labelEstadoPaciente.setText(paciente.getEstado());
-	        labelCepPaciente.setText(paciente.getCep());
-	        labelProntuarioPaciente.setText(paciente.getNumeroProntuario());
+	        labelNomePaciente.setText(safeString(paciente.getNome()));
+	        labelCpfPaciente.setText(safeString(paciente.getCpf()));
+	        labelDataNascPaciente.setText(paciente.getDataNascimento() != null ? paciente.getDataNascimento().toString() : "");
+	        labelTelefonePaciente.setText(safeString(paciente.getTelefone()));
+	        labelEmailPaciente.setText(safeString(paciente.getEmail()));
+	        labelGeneroPaciente.setText(safeString(paciente.getGenero()));
+	        labelEnderecoPaciente.setText(safeString(paciente.getEndereco()));
+	        labelEstadoPaciente.setText(safeString(paciente.getEstado()));
+	        labelCepPaciente.setText(safeString(paciente.getCep()));
+	        labelProntuarioPaciente.setText(safeString(paciente.getNumeroProntuario()));
 	    }
 	}
+	
+	public JPanel getPainelAnterior() {
+		return painelAnterior;
+	}
+
+	public void setPainelAnterior(JPanel painelAnterior) {
+		this.painelAnterior = painelAnterior;
+	}
+
 }
